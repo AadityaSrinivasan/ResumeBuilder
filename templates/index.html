@@ -46,7 +46,7 @@
     </div>
     <div class="main-content">
         <img src="{{ url_for('static', filename='resumeSS.png') }}" alt="Main Image" class="main-image">
-        <form action="/upload" method="POST" enctype="multipart/form-data">
+        <form action="/" method="POST" enctype="multipart/form-data">
             <input type="file" name="pdf_file">
             <input type="submit" value="Upload PDF">
         </form>
