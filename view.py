@@ -1,6 +1,4 @@
 from flask import Blueprint, render_template, request
-from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField
 from readRes import read
 view = Blueprint(__name__,"view")
 
