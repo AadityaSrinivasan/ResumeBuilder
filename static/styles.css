@@ -1,0 +1,39 @@
+/* styles.css */
+
+/* Add your CSS styles here */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: right;
+}
+
+.main-content {
+    display: flex;
+    align-items: center;
+}
+
+.main-image {
+    max-width: 50%;
+    height: auto;
+}
+
+.button-container {
+    flex: 1;
+    text-align: center;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px;
+    display: inline-block;
+}
+
+/* Add any additional styles you need */
