@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request
-from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField
-from readRes import read
+from io import BytesIO
+from readRes import*
 view = Blueprint(__name__,"view")
 
 
@@ -15,7 +14,10 @@ def home():
         if 'pdf_file' in request.files:
             pdf_file = request.files['pdf_file']
             if pdf_file.filename != '':
-                uploaded_pdf = pdf_file.read()
-                read(uploaded_pdf)
+                pdf_content = pdf_file.read()
+                pdf_file.seek(0)  # Reset the file pointer
+                text = extract_text_from_pdf(BytesIO(pdf_content))
+                analysis_results = analyzeRes(text)
+                
 
     return render_template("index.html")
