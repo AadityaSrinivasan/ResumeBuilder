@@ -1,41 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Website</title>
-    <style>
-        /* Add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .navbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: right;
-        }
-        .main-content {
-            display: flex;
-            align-items: center;
-        }
-        .main-image {
-            max-width: 50%;
-            height: auto;
-        }
-        .button-container {
-            flex: 1;
-            text-align: center;
-        }
-        .button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            margin: 10px;
-            display: inline-block;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="navbar">
@@ -46,7 +15,7 @@
     </div>
     <div class="main-content">
         <img src="{{ url_for('static', filename='resumeSS.png') }}" alt="Main Image" class="main-image">
-        <form action="/upload" method="POST" enctype="multipart/form-data">
+        <form action="/" method="POST" enctype="multipart/form-data">
             <input type="file" name="pdf_file">
             <input type="submit" value="Upload PDF">
         </form>
