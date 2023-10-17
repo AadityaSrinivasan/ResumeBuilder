@@ -1,0 +1,144 @@
+python
+machine learning
+data science
+javascript
+web development
+java
+c++
+sql
+react
+node.js
+html/css
+ruby on rails
+git
+django
+ruby
+android development
+ios development
+aws
+azure
+microsoft office
+excel
+word
+powerpoint
+photoshop
+data analysis
+statistical analysis
+data visualization
+problem solving
+teamwork
+leadership
+project management
+time management
+communication
+creative writing
+critical thinking
+customer service
+sales
+marketing
+graphic design
+ui/ux design
+content management
+social media management
+digital marketing
+search engine optimization (seo)
+coding and programming
+python
+java
+c++
+javascript
+ruby
+php
+swift
+kotlin
+perl
+rust
+matlab
+data analytics and data science
+data analysis
+statistical analysis
+data visualization
+machine learning
+deep learning
+natural language processing (nlp)
+data mining
+predictive analytics
+a/b testing
+statistical modeling
+data cleaning
+data warehousing
+business intelligence (bi)
+tableau
+power bi
+web development
+html/css
+react
+angular
+vue.js
+node.js
+express.js
+django
+ruby on rails
+flask
+restful apis
+front-end development
+back-end development
+responsive design
+cross-browser compatibility
+web security
+cms (content management systems)
+wordpress
+e-commerce development
+mobile-first development
+web performance optimization
+infrastructure and cloud services
+amazon web services (aws)
+microsoft azure
+google cloud platform (gcp)
+virtualization
+cloud computing
+devops
+containers (docker, kubernetes)
+continuous integration and continuous deployment (ci/cd)
+serverless architecture
+network administration
+system administration
+database management
+load balancing
+security management
+infrastructure as code (iac)
+additional skills
+version control (git)
+agile methodology
+scrum
+jira
+project management
+time management
+communication skills
+problem solving
+critical thinking
+teamwork
+leadership
+technical writing
+documentation
+troubleshooting
+customer support
+sales
+marketing
+graphic design
+ui/ux design
+content strategy
+social media management
+search engine optimization (seo)
+email marketing
+content marketing
+cybersecurity
+blockchain
+iot (internet of things)
+cloud security
+big data
+hadoop
+nosql databases
+graphql
+web accessibility
+internationalization (i18n)
