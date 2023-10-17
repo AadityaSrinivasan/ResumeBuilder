@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from io import BytesIO
 from readRes import*
+
 view = Blueprint(__name__,"view")
 
 
