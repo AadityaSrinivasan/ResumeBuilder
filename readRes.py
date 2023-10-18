@@ -12,16 +12,27 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')'''
 
+def read_skills_from_file(file_path):
+    skills = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            skills.append(line.strip())
+    return skills
+
+SKILLS_FILE = 'skills.txt'
+SKILLS_DB = read_skills_from_file(SKILLS_FILE)
+
+
 PHONE_REG = re.compile(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]')
 EMAIL_REG = re.compile(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+')
-SKILLS_DB = [
+'''SKILLS_DB = [
     'machine learning',
     'data science',
     'python',
     'word',
     'excel',
     'English',
-]
+]'''
 
 
 def extract_text_from_pdf(pdf_path):
@@ -81,15 +92,19 @@ def extract_skills(input_text):
     return found_skills
 
 def analyzeRes(text):
+    results = {}
     names = extract_names(text)
     number = extract_phone_number(text)
     email= extract_emails(text)
     skills = extract_skills(text)
+
     if names:
-        print(names[0])  
+        results['names'] = names[0]
     if number:
-        print(number)
+        results['number'] = number
     if email:
-        print(email[0])
+        results['email'] = email[0]
     if skills:
-        print(skills)
+        results['skills'] = list(skills)
+
+    return results
