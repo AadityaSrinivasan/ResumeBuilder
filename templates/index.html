@@ -14,7 +14,13 @@
     <div class="main-content">
         <div class="left-column">
             <h2>Upload PDF</h2>
-            <img src="{{ url_for('static', filename='resumeSS.png') }}" alt="Main Image" class="main-image">
+            <div id="resume-content">
+                {% if pdf_image %}
+                    <img src="data:image/jpeg;base64,{{ image_to_base64(pdf_image) }}"  style="width: 50%; height: auto;"/>
+                {% else %}
+                    <img src="{{ url_for('static', filename='resumeSS.png') }}" alt="Main Image" class="main-image">
+                {% endif %}
+            </div>
             <form action="/" method="POST" enctype="multipart/form-data">
                 <input type="file" name="pdf_file">
                 <input type="submit" value="Upload PDF" class="upload-button">
@@ -23,7 +29,7 @@
         <div class="right-column">
             <h2>Resume Content</h2>
             <div id="resume-content">
-                <!-- Resume content will be displayed here -->
+                
             </div>
         </div>
     </div>

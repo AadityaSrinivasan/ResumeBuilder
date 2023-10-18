@@ -81,8 +81,6 @@ def extract_skills(input_text):
     return found_skills
 
 def analyzeRes(text):
-    #text = extract_text_from_pdf('/Users/sayok/Desktop/Work resume.docx.pdf')
-    #text = extract_text_from_pdf(resume)
     names = extract_names(text)
     number = extract_phone_number(text)
     email= extract_emails(text)
