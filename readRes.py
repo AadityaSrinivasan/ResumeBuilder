@@ -34,6 +34,25 @@ EMAIL_REG = re.compile(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+')
     'English',
 ]'''
 
+EDUCATION_WORDS = [
+    'school',
+    'college',
+    'univer',
+    'academy',
+    'faculty',
+    'institute',
+    'faculdades',
+    'Schola',
+    'schule',
+    'lise',
+    'lyceum',
+    'lycee',
+    'polytechnic',
+    'kolej',
+    'ünivers',
+    'okul',
+]
+
 
 def extract_text_from_pdf(pdf_path):
     return extract_text(pdf_path)
@@ -91,12 +110,33 @@ def extract_skills(input_text):
  
     return found_skills
 
+def extract_education(input_text):
+    organizations = []
+ 
+    # first get all the organization names using nltk
+    for sent in nltk.sent_tokenize(input_text):
+        for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))):
+            if hasattr(chunk, 'label') and chunk.label() == 'ORGANIZATION':
+                organizations.append(' '.join(c[0] for c in chunk.leaves()))
+ 
+    # we search for each bigram and trigram for reserved words
+    # (college, university etc...)
+    education = set()
+    for org in organizations:
+        for word in EDUCATION_WORDS:
+            if org.lower().find(word) >= 0:
+                education.add(org)
+ 
+    return education
+
 def analyzeRes(text):
     results = {}
     names = extract_names(text)
     number = extract_phone_number(text)
     email= extract_emails(text)
     skills = extract_skills(text)
+    education = extract_education(text)
+
 
     if names:
         results['names'] = names[0]
@@ -106,5 +146,7 @@ def analyzeRes(text):
         results['email'] = email[0]
     if skills:
         results['skills'] = list(skills)
+    if education:
+        results['education'] = education
 
     return results

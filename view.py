@@ -19,6 +19,7 @@ def home():
                 pdf_file.seek(0)  # Reset the file pointer
                 text = extract_text_from_pdf(BytesIO(pdf_content))
                 analysis_results = analyzeRes(text)
+                print(analysis_results)
                 
 
     return render_template("index.html")

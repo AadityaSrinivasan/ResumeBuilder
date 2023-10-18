@@ -5,6 +5,8 @@ javascript
 web development
 java
 c++
+C++
+HTML
 sql
 react
 node.js
