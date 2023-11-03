@@ -1,5 +1,3 @@
-
-
 from pdfminer.high_level import extract_text
 import nltk
 
@@ -12,15 +10,45 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')'''
 
+def read_skills_from_file(file_path):
+    skills = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            skills.append(line.strip())
+    return skills
+
+SKILLS_FILE = 'skills.txt'
+SKILLS_DB = read_skills_from_file(SKILLS_FILE)
+
+
 PHONE_REG = re.compile(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]')
 EMAIL_REG = re.compile(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+')
-SKILLS_DB = [
+'''SKILLS_DB = [
     'machine learning',
     'data science',
     'python',
     'word',
     'excel',
     'English',
+]'''
+
+EDUCATION_WORDS = [
+    'school',
+    'college',
+    'univer',
+    'academy',
+    'faculty',
+    'institute',
+    'faculdades',
+    'Schola',
+    'schule',
+    'lise',
+    'lyceum',
+    'lycee',
+    'polytechnic',
+    'kolej',
+    'ünivers',
+    'okul',
 ]
 
 
@@ -80,16 +108,43 @@ def extract_skills(input_text):
  
     return found_skills
 
+def extract_education(input_text):
+    organizations = []
+ 
+    # first get all the organization names using nltk
+    for sent in nltk.sent_tokenize(input_text):
+        for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))):
+            if hasattr(chunk, 'label') and chunk.label() == 'ORGANIZATION':
+                organizations.append(' '.join(c[0] for c in chunk.leaves()))
+ 
+    # we search for each bigram and trigram for reserved words
+    # (college, university etc...)
+    education = set()
+    for org in organizations:
+        for word in EDUCATION_WORDS:
+            if org.lower().find(word) >= 0:
+                education.add(org)
+ 
+    return education
+
 def analyzeRes(text):
+    results = {}
     names = extract_names(text)
     number = extract_phone_number(text)
     email= extract_emails(text)
     skills = extract_skills(text)
+    education = extract_education(text)
+
+
     if names:
-        print(names[0])  
+        results['names'] = names[0]
     if number:
-        print(number)
+        results['number'] = number
     if email:
-        print(email[0])
+        results['email'] = email[0]
     if skills:
-        print(skills)
+        results['skills'] = list(skills)
+    if education:
+        results['education'] = education
+
+    return results
