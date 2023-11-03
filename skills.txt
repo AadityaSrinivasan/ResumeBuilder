@@ -5,8 +5,11 @@ javascript
 web development
 java
 c++
+<<<<<<< HEAD
 C++
 HTML
+=======
+>>>>>>> 63f10e21d3d52e66ae4ba1843846819bc9058d9c
 sql
 react
 node.js
