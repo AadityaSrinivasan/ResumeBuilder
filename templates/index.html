@@ -3,59 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <style>
-        /* Add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .navbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: right;
-        }
-        .main-content {
-            display: flex;
-            align-items: center;
-        }
-        .main-image {
-            max-width: 50%;
-            height: auto;
-        }
-        .button-container {
-            flex: 1;
-            text-align: center;
-        }
-        .button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            margin: 10px;
-            display: inline-block;
-        }
-    </style>
+    <title>Resume Builder</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="navbar">
-        <button id="signin-button">
-            <!-- Add a link here: <a href="your-signin-page.html">Sign In</a> -->
-            Sign In
-        </button>
+        <h1 class="page-title">Resume Builder</h1>
+        <button id="signin-button">Sign In</button>
     </div>
     <div class="main-content">
-        <img src="{{ url_for('static', filename='resumeSS.png') }}" alt="Main Image" class="main-image">
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" name="pdf_file">
-            <input type="submit" value="Upload PDF">
-        </form>
-        <div class="button-container">
-            <a href="#">Button 1</a>
-            <a href="#">Button 2</a>
-            <a href="#">Button 3</a>
-            <a href="#">Button 4</a>
+        <div class="left-column">
+            <h2>Upload PDF</h2>
+            <div id="resume-content">
+                {% if pdf_image %}
+                    <img src="data:image/jpeg;base64,{{ image_to_base64(pdf_image) }}"  style="width: 50%; height: auto;"/>
+                {% else %}
+                    <img src="{{ url_for('static', filename='resumeSS.png') }}" alt="Main Image" class="main-image">
+                {% endif %}
+            </div>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <input type="file" name="pdf_file">
+                <input type="submit" value="Upload PDF" class="upload-button">
+            </form>
         </div>
+        <div class="right-column">
+            <h2>Resume Content</h2>
+            <div id="resume-content">
+                
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <a href="#" class="custom-button">Button 1</a>
+        <a href="#" class="custom-button">Button 2</a>
+        <a href="#" class="custom-button">Button 3</a>
+        <a href="#" class="custom-button">Button 4</a>
     </div>
 </body>
 </html>
