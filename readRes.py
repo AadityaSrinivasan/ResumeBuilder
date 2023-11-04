@@ -31,7 +31,7 @@ EMAIL_REG = re.compile(r'[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+')
     'excel',
     'English',
 ]'''
-<<<<<<< HEAD
+
 
 EDUCATION_WORDS = [
     'school',
@@ -51,8 +51,7 @@ EDUCATION_WORDS = [
     'ünivers',
     'okul',
 ]
-=======
->>>>>>> 63f10e21d3d52e66ae4ba1843846819bc9058d9c
+
 
 
 def extract_text_from_pdf(pdf_path):
@@ -136,11 +135,10 @@ def analyzeRes(text):
     number = extract_phone_number(text)
     email= extract_emails(text)
     skills = extract_skills(text)
-<<<<<<< HEAD
+
     education = extract_education(text)
 
-=======
->>>>>>> 63f10e21d3d52e66ae4ba1843846819bc9058d9c
+
 
     if names:
         results['names'] = names[0]
@@ -150,12 +148,11 @@ def analyzeRes(text):
         results['email'] = email[0]
     if skills:
         results['skills'] = list(skills)
-<<<<<<< HEAD
+
     if education:
         results['education'] = education
 
-    return results
-=======
+
 
     return results
->>>>>>> 63f10e21d3d52e66ae4ba1843846819bc9058d9c
+
