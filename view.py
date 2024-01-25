@@ -4,6 +4,7 @@ from readRes import*
 from pdf2image import convert_from_bytes
 import base64 
 import tempfile
+from readRes import Education
 
 view = Blueprint(__name__,"view")
 global analysis_results
@@ -14,6 +15,15 @@ def image_to_base64(image):
     buffered = BytesIO()
     image.save(buffered, format="JPEG")
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
+
+def printData():
+    for key, value in analysis_results.items():
+        if key!= 'education':
+            print(f"{key}: {value}")
+        else:
+            for x in value:
+                print(x)
+
 
 @view.route("/",  methods = ['GET', "POST"])
 def home():
@@ -55,8 +65,11 @@ def home():
 
 @view.route('/update_data', methods=['POST'])
 def update_data():
+    print("in dataList")
+
     field = request.json['field']
     value = request.json['value']
+    print('over here')
     print(field)
     print(value)
     # Update the analysis_results or perform necessary actions with field and value
@@ -68,15 +81,26 @@ def update_data():
 
 @view.route('/update_dataList', methods=['POST'])
 def update_dataList():
+    print("in dataList")
     field = request.json['field']
     value = request.json['value']
     index = request.json['index']
-    # Update the analysis_results or perform necessary actions with field and value
-    print(index)
-    analysis_results[field][int(index)-1] = value
-    for key, value in analysis_results.items():
-        print(f"{key}: {value}")
-    # Return a response if needed
-    return 'Data received successfully'
+    if field == 'eduName':
+        analysis_results['education'][int(index)-1].name = value
+        printData()
+
+        return 'Data received successfully'
+    elif field == 'eduGPA':
+        analysis_results['education'][int(index)-1].gpa = value
+        printData()
+        return 'Data received successfully'
+    elif field!= 'eduName':
+        # Update the analysis_results or perform necessary actions with field and value
+        print(index)
+        analysis_results[field][int(index)-1] = value
+        printData()
+        # Return a response if needed
+        return 'Data received successfully'
+
 
 

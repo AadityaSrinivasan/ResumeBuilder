@@ -68,8 +68,8 @@
                         {% for education in educations %}
                         <div class="infoGroup">
                             <label for="Education{{ loop.index }}" class="custom-label" style="vertical-align: middle;">Education {{ loop.index }}:</label>
-                            <input class="infoText" id="Education{{ loop.index }}" style="vertical-align: middle;" value = "{{ education.name }}" placeholder="Institution"></input>
-                            <input class="infoText" id="Education{{ loop.index }}" style="vertical-align: middle;" value = "{{ education.gpa }}" placeholder="GPA"></input>
+                            <input class="infoText_educationName" id="Education{{ loop.index }}" data-index="{{ loop.index }}"  style="vertical-align: middle;" value = "{{ education.name }}" placeholder="Institution"></input>
+                            <input class="infoText_educationGPA" id="Education{{ loop.index }}" data-index="{{ loop.index }}" style="vertical-align: middle;" value = "{{ education.gpa }}" placeholder="GPA"></input>
                         </div>
                         {% endfor %}
                     </div>

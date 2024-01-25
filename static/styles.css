@@ -264,3 +264,31 @@ body {
     border-color: #3c0101c3; /* Change color on focus */
     box-shadow: 0 0 5px #3c0101c3;
 }
+
+.infoText_educationName{
+    border-bottom-color: #3c0101;
+    border-top-color: #ffffff00;
+    border-left-color:  #ffffff00;
+    border-right-color:  #ffffff00;
+    font-size: 2vh;
+}
+
+.infoText_educationName :focus{
+    outline: none;
+    border-color: #3c0101c3; /* Change color on focus */
+    box-shadow: 0 0 5px #3c0101c3;
+}
+
+.infoText_educationGPA{
+    border-bottom-color: #3c0101;
+    border-top-color: #ffffff00;
+    border-left-color:  #ffffff00;
+    border-right-color:  #ffffff00;
+    font-size: 2vh;
+}
+
+.infoText_educationGPA :focus{
+    outline: none;
+    border-color: #3c0101c3; /* Change color on focus */
+    box-shadow: 0 0 5px #3c0101c3;
+}
