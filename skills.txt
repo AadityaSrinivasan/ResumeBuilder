@@ -144,3 +144,5 @@ nosql databases
 graphql
 web accessibility
 internationalization (i18n)
+CPR
+First AID

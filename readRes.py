@@ -4,6 +4,7 @@ from pyresparser import ResumeParser
 from nltk.corpus import stopwords
 import spacy
 import re
+from spacy.matcher import Matcher
 import subprocess
 
 '''
@@ -55,10 +56,27 @@ EDUCATION_WORDS = [
     
 ]
 
+class Education:
+    def __init__(self, name, gpa):
+        self.name = name
+        self.gpa = gpa
+    
+    def __str__(self):
+        return f"{self.name} GPA: {self.gpa}"
+
+institution_patterns = [
+    [{"LOWER": "college"}, {"POS": "ADP", "OP": "?"}, {"POS": "PROPN", "OP": "+"}],
+    [{"LOWER": "university"}, {"POS": "ADP", "OP": "?"}, {"POS": "PROPN", "OP": "+"}],
+    [{"POS": "PROPN", "OP": "+"}, {"LOWER": "college"}],
+    [{"POS": "PROPN", "OP": "+"}, {"LOWER": "university"}],
+    [{"LOWER": "highschool"}],
+    [{"LOWER": "high"}, {"LOWER": "school"}],
+]
+
 
 
 def extract_text_from_pdf(pdf_path):
-    print(type(pdf_path))
+    
     return extract_text(pdf_path)
  
 def extract_names(txt):
@@ -165,25 +183,79 @@ def reduceEDU(sentence):
     
     return education_name
 
+
+def getGPA(sentence):
+    # Check if the sentence contains the word "unweighted" (case-insensitive)
+    if re.search(r'unweighted', sentence, re.IGNORECASE):
+        return []
+
+    gpa_pattern = r'\b[0-4]\.\d{1,4}\b'
+    gpas = re.findall(gpa_pattern, sentence)
+    if gpas:
+        return gpas
+    else:
+        return []
+    
+def refineEdus(edus):
+    sorted_education_list = sorted(edus, key=len)
+    # Initialize a new list to store the unique values
+    
+
+    # Iterate through the list and compare each string with all other strings
+    numLen = 0
+    for i in range(0,len(sorted_education_list)):
+        j = i
+        while(j< len(sorted_education_list)):
+            if sorted_education_list[i] in sorted_education_list[j] and i!=j:
+                sorted_education_list.pop(j)
+                j-=1
+            else:
+                j+=1
+    return sorted_education_list
+
 def extract_education(input_text):
     organizations = []
     education = set()
+    gpa = []
     # first get all the organization names using nltk
     for sent in nltk.sent_tokenize(input_text):
         temp = sent.split('\n')
         line = [item for item in temp if item != ""]
         for sentence in line:
+            gpa += getGPA(sentence)
             edu = extract_educationS(sentence)
             
             if edu is not None:
                 education.add(edu)
     educations = set()
-    for sentence in education:
+    for index, sentence in enumerate(education, 0):
+        
         edu =  reduceEDU(sentence)
+        
         if edu is not None:
-            educations.add(edu)
-    return education
+            matcher = Matcher(nlp.vocab)
+            for pattern in institution_patterns:
+                matcher.add("EducationalInstitution", [pattern])
+            doc = nlp(edu)
+            matches = matcher(doc)
+            if matches:
+                educations.add(edu)
+    
+    finalEducations = refineEdus(list(educations))
+    
 
+    for index, element in enumerate(finalEducations):
+        finalEducations[index] = Education(element, gpa[index])
+
+    return finalEducations
+
+def getWebsites(text):
+    website_pattern = r'\b(?:https?://|www\.)\S+\b|\b\S+@\w+\.\w+\b'
+
+    # Use re.findall to extract websites from the text
+    websites = re.findall(website_pattern, text)
+
+    return websites
 
 
 
@@ -196,11 +268,11 @@ def analyzeRes(text, pdfpath):
     skills = extract_skills(text)
 
     education = extract_education(text)
-
+    websites = getWebsites(text)
 
 
     if names:
-        results['names'] = names
+        results['name'] = names
     if number:
         results['number'] = number
     if email:
@@ -210,9 +282,13 @@ def analyzeRes(text, pdfpath):
 
     if education:
         results['education'] = education
+        
+    if websites:
+        websites = [element for element in websites if element not in email[0]]
+        results['website'] = websites
 
-    for key, value in results.items():
-        print(f"{key}: {value}")
+    
+    
 
     return results
 
