@@ -149,3 +149,536 @@ web accessibility
 internationalization (i18n)
 CPR
 First AID
+Go
+Dart
+GAE
+python
+data engineering
+react native
+vue.js
+typescript
+flutter
+elixir
+scala
+groovy
+shell scripting
+bash
+perl
+r programming
+sas programming
+mongodb
+cassandra
+redis
+graphql
+apollo
+kubernetes
+docker
+terraform
+jenkins
+ansible
+puppet
+cucumber
+selenium
+test automation
+kotlin
+objective-c
+swiftui
+android studio
+xcode
+unity
+unreal engine
+cybersecurity auditing
+ethical hacking
+blockchain development
+solidity
+smart contracts
+edge computing
+natural language generation (nlg)
+augmented reality (ar)
+virtual reality (vr)
+nlp
+computer vision
+speech recognition
+tensorflow
+pytorch
+keras
+scikit-learn
+pandas
+numpy
+spark
+apache kafka
+rabbitmq
+flask
+django rest framework
+nestjs
+spring boot
+serverless computing
+lambda functions
+graphql
+restful apis
+microservices architecture
+elasticsearch
+logstash
+kibana
+bigtable
+cassandra
+neo4j
+graphql
+rabbitmq
+grpc
+etcd
+consul
+istio
+prometheus
+grafana
+helm
+istio
+azure devops
+github actions
+bitbucket pipelines
+circleci
+gitlab ci/cd
+continuous delivery
+continuous deployment
+agile project management
+kanban
+lean methodology
+rapid prototyping
+usability testing
+user research
+interaction design
+wireframing
+prototyping
+user personas
+design thinking
+adobe xd
+sketch
+figma
+zeplin
+invision
+content strategy
+social media strategy
+community management
+branding
+growth hacking
+search engine marketing (sem)
+google ads
+facebook ads
+linkedin ads
+conversion rate optimization (cro)
+a/b testing
+heatmap analysis
+data-driven decision-making
+customer relationship management (crm)
+salesforce
+hubspot
+zendesk
+intercom
+customer success management
+customer retention
+churn analysis
+product lifecycle management (plm)
+supply chain management
+sap
+oracle erp
+pega
+ui/ux auditing
+accessibility testing
+localization
+internationalization
+speechwriting
+ghostwriting
+business intelligence reporting
+qlikview
+looker
+metabase
+talend
+airflow
+docker-compose
+vagrant
+virtualbox
+azure virtual machines
+google compute engine
+cloud networking
+firewalls
+intrusion detection systems (ids)
+incident response
+digital forensics
+threat intelligence
+virus scanning
+web application firewall (waf)
+blockchain security
+hyperledger
+corda
+zero trust security
+homomorphic encryption
+quantum key distribution
+scheme
+gambit
+racket
+Adaptable
+Ambitious
+Analytical
+Approachable
+Assertive
+Attentive
+Authentic
+Autonomous
+Calm
+Charismatic
+Collaborative
+Communicative
+Compassionate
+Confident
+Conscientious
+Considerate
+Creative
+Critical Thinker
+Customer-Focused
+Dedicated
+Detail-Oriented
+Determined
+Diplomatic
+Disciplined
+Driven
+Dynamic
+Efficient
+Empathetic
+Energetic
+Enthusiastic
+Ethical
+Flexible
+Focused
+Friendly
+Goal-Oriented
+Hardworking
+Honest
+Imaginative
+Independent
+Innovative
+Insightful
+Inspiring
+Intelligent
+Intuitive
+Inventive
+Leadership Skills
+Logical
+Loyal
+Motivated
+Meticulous
+Open-Minded
+Organized
+Original
+Outgoing
+Passionate
+Patient
+Perceptive
+Personable
+Persuasive
+Positive
+Proactive
+Professional
+Punctual
+Purposeful
+Quick Learner
+Reliable
+Resourceful
+Resilient
+Responsible
+Results-Driven
+Self-Confident
+Self-Disciplined
+Self-Motivated
+Sense of Humor
+Sincere
+Strategic
+Systematic
+Tactful
+Team Player
+Thorough
+Thoughtful
+Time Management
+Trustworthy
+Unbiased
+Versatile
+Visionary
+Well-Organized
+Willing to Learn
+Work Ethic
+Zealous
+Accessible
+Adaptable
+Adventurous
+Analytical
+Articulate
+Assertive
+Attentive
+Authentic
+Balanced
+Captivating
+Caring
+Charismatic
+Charming
+Cheerful
+Collaborative
+Compassionate
+Competent
+Composed
+Confident
+Conscientious
+Considerate
+Consistent
+Cooperative
+Courageous
+Courteous
+Creative
+Curious
+Daring
+Decisive
+Dependable
+Determined
+Diligent
+Discerning
+Disciplined
+Discreet
+Dynamic
+Easygoing
+Efficient
+Empathetic
+Energetic
+Enthusiastic
+Expressive
+Fair
+Fearless
+Focused
+Friendly
+Generous
+Gentle
+Genuine
+Gracious
+Hardworking
+Helpful
+Honest
+Humble
+Imaginative
+Impartial
+Independent
+Industrious
+Innovative
+Insightful
+Inspirational
+Integrity
+Intelligent
+Intuitive
+Joyful
+Just
+Kind
+Knowledgeable
+Lively
+Logical
+Loving
+Loyal
+Methodical
+Meticulous
+Mindful
+Motivated
+Observant
+Open-Minded
+Optimistic
+Organized
+Original
+Outgoing
+Patient
+Perceptive
+Personable
+Persuasive
+Playful
+Positive
+Practical
+Precise
+Proactive
+Professional
+Punctual
+Purposeful
+Realistic
+Reflective
+Reliable
+Resourceful
+Resilient
+Respectful
+Responsible
+Reverent
+Risk-Taking
+Self-Assured
+Self-Reliant
+Sincere
+Skillful
+Social
+Spirited
+Steadfast
+Strong-Willed
+Sympathetic
+Systematic
+Tactful
+Tenacious
+Thoughtful
+Thrifty
+Tolerant
+Trusting
+Trustworthy
+Unbiased
+Understanding
+Unflappable
+Unique
+Unpretentious
+Unwavering
+Upbeat
+Versatile
+Vibrant
+Virtuous
+Visionary
+Warmhearted
+Welcoming
+Well-Balanced
+Well-Read
+Well-Rounded
+Willing to Adapt
+Willing to Learn
+Wise
+Witty
+Youthful
+Zealous
+Easygoing
+Elegant
+Empowering
+Endearing
+Energetic
+Engaging
+Enigmatic
+Enterprising
+Enthusiastic
+Environmentalist
+Equalitarian
+Ethical
+Exceptional
+Exuberant
+Fair
+Fearless
+Focused
+Forgiving
+Fortitudinous
+Frank
+Free-Spirited
+Friendly
+Fun-Loving
+Funny
+Generous
+Gentle
+Genuine
+Gifted
+Giving
+Grateful
+Gregarious
+Grounded
+Happy
+Harmonious
+Healthy
+Hearty
+Helpful
+High-Energy
+Honest
+Hopeful
+Hospitable
+Humble
+Humorous
+Imaginative
+Impartial
+Independent
+Industrious
+Innovative
+Insightful
+Inspiring
+Intelligent
+Intrepid
+Intuitive
+Inventive
+Joyful
+Judicious
+Just
+Keen
+Kind
+Knowledgeable
+Leading
+Lively
+Logical
+Long-Term Vision
+Loyal
+Loving
+Ambitious
+Compassionate
+Disciplined
+Inquisitive
+Tactful
+Courageous
+Adaptable
+Patient
+Charismatic
+Perceptive
+Diplomatic
+Tenacious
+Resourceful
+Punctual
+Optimistic
+Meticulous
+Reliable
+Versatile
+Creative
+Assertive
+Enthusiastic
+Resilient
+Conscientious
+Open-minded
+Self-motivated
+Independent
+Collaborative
+Innovative
+Caring
+Objective
+Energetic
+Organized
+Efficient
+Genuine
+Responsible
+Loyal
+Persistent
+Self-disciplined
+Curious
+Sociable
+Imaginative
+Focused
+Decisive
+Supportive
+Intuitive
+Articulate
+Proactive
+Sympathetic
+Gracious
+Tolerant
+Modest
+Persuasive
+networking
+security
+collaborate
+HTTP
+http
+Customer Success
+Trust
+Integrity
+Collaboration
+Innovation
+Inclusion
+Accountability
+Node.JS
+GCP
+Angular
+open minded
