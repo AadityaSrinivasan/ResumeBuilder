@@ -2,7 +2,8 @@
 const nameInput = document.getElementById('Name');
 const numberInput = document.getElementById("Number")
 const emailInput = document.getElementById("Email")
-const websiteInput = document.getElementById("Website")
+
+
 // Add change event listener
 nameInput.addEventListener('change', function() {
     const updatedName = this.value;
@@ -19,6 +20,13 @@ emailInput.addEventListener('change', function() {
     sendDataToServer('email', updatedEmail); // Call function to send data to server
 });
 
+const skillsInput = document.getElementById("skills")
+
+skillsInput.addEventListener('change', function() {
+    const updatedSkils = this.value;
+    sendDataToServer('skills', updatedSkils); // Call function to send data to server
+});
+
 const websiteInputs = document.querySelectorAll('.infoText_websiteInput');
 
 // Add change event listener to each website input field
@@ -29,6 +37,35 @@ websiteInputs.forEach(input => {
         sendDataToServerList('website', index, updatedWebsite ); // Send data to server
     });
 });
+
+
+
+const education_GPA_Inputs = document.querySelectorAll('.infoText_educationGPA');
+education_GPA_Inputs.forEach(input => {
+    input.addEventListener('change', function() {
+        const index = this.dataset.index;
+        const updatedGPA = this.value;
+        sendDataToServerList('eduGPA', index, updatedGPA ); // Send data to server
+    });
+});
+
+const education_name_Inputs = document.querySelectorAll('.infoText_educationName');
+
+education_name_Inputs.forEach(input => {
+    input.addEventListener('change', function() {
+        const index = this.dataset.index;
+        const updatedEduName = this.value;
+        console.log(updatedEduName);
+        console.log(index)
+        sendDataToServerList('eduName', index, updatedEduName ); // Send data to server
+    });
+});
+
+
+
+
+
+
 
 function sendDataToServerList(fieldName, index, value ) {
     fetch('/update_dataList', {
