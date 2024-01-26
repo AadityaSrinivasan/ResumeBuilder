@@ -62,6 +62,89 @@ education_name_Inputs.forEach(input => {
 });
 
 
+//delete educations
+
+document.addEventListener('DOMContentLoaded', function () {
+    function updateEducationIndices() {
+        // Get all education divs
+        var educationDivs = document.querySelectorAll('.infoGroup');
+
+        // Update data-index attributes for each education div
+        educationDivs.forEach(function (educationDiv, index) {
+            educationDiv.querySelectorAll('[data-index]').forEach(function (element) {
+                var currentDataIndex = element.getAttribute('data-index');
+                console.log('Current data-index:', currentDataIndex);
+                
+                // Decrement the data-index attribute
+                element.setAttribute('data-index', index - 3);
+
+                var label = educationDiv.querySelector('label[for^="Education"]');
+                if (label) {
+                    label.textContent = 'Education ' + (index - 3) + ':';
+                }
+
+                var input = educationDiv.querySelector('.infoText_educationName');
+                if (input) {
+                    input.setAttribute('id', 'Education' + (index - 3));
+                }
+                
+                // Log the updated data-index
+                console.log('Updated data-index:', element.getAttribute('data-index'));
+            });
+        });
+    }
+
+    // Get all delete buttons
+    var deleteButtons = document.querySelectorAll('.deleteEducationButton');
+
+    // Add click event listener to each delete button
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            // Get the index from the data-index attribute
+            var index = button.getAttribute('data-index');
+
+            // Find the corresponding education div and remove it
+            var educationDiv = document.querySelector('.infoText_educationName[data-index="' + index + '"]').closest('.infoGroup');
+            if (educationDiv) {
+                educationDiv.remove();
+
+                // Update the data-index attributes for the remaining education entries
+                updateEducationIndices();
+
+                // Update the server-side list
+                updateServerSideList(index);
+            }
+        });
+    });
+
+    function updateServerSideList(index) {
+        fetch('/update_educations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                index: index,
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Data sent successfully');
+            } else {
+                console.error('Error sending data');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+});
+
+
+
+
+
+
 
 
 
@@ -115,3 +198,40 @@ function sendDataToServer(fieldName, value) {
         console.error('Error:', error);
     });
 }
+
+
+
+//now its stuff for the website add and delete
+
+document.addEventListener('DOMContentLoaded', function () {
+    var websitesContainer = document.getElementById('websitesContainer');
+    var addWebsiteButton = document.getElementById('addWebsiteButton');
+
+    addWebsiteButton.addEventListener('click', function () {
+        var newIndex = websitesContainer.children.length;
+        console.log(newIndex);
+        // Create a new infoGroup div for the new website
+        var newWebsiteDiv = document.createElement('div');
+        newWebsiteDiv.className = 'infoGroup';
+
+        // Create label for the new website
+        var newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'Website' + newIndex);
+        newLabel.className = 'custom-label';
+        newLabel.textContent = 'Website ' + newIndex + ':';
+
+        // Create input for the new website
+        var newInput = document.createElement('input');
+        newInput.className = 'infoText_websiteInput';
+        newInput.id = 'Website' + newIndex;
+        newInput.setAttribute('data-index', newIndex);
+        newInput.style.verticalAlign = 'middle';
+
+        // Append the label and input to the newWebsiteDiv
+        newWebsiteDiv.appendChild(newLabel);
+        newWebsiteDiv.appendChild(newInput);
+
+        // Append the newWebsiteDiv to the websitesContainer
+        websitesContainer.appendChild(newWebsiteDiv);
+    });
+});
