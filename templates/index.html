@@ -34,14 +34,13 @@
             <div class = "buttons">
                 <form method="POST"  >
                     <label for="websiteLink">Application Link:</label>
-                    <input type="text" id="websiteLink" name="text" placeholder="Enter website link">
-                    <input type="submit" value="Personalize">
+                    <input type="text" id="websiteLink" name="text" placeholder="Enter website link" class="infoText">
+                    <input type="submit" value="Personalize" class="custom-button">
                 </form>
                 
                 
-
+                <a href="#" class="custom-button">Contact</a>
                 <div class = "info">
-                    <a href="#" class="custom-button">Contact</a>
                     <div class = "contactGroup">
                         <div class = "infoGroup">
                             <label for="Name" class="custom-label" style="vertical-align: middle;">Name:</label>
@@ -77,8 +76,9 @@
                     </div>
                     
                 </div>
+                <a href="#" class="custom-button">Education</a>
                 <div class = "info">
-                    <a href="#" class="custom-button">Education</a>
+                    
                     <div class = "contactGroup">
                         {% for education in educations %}
                             <div class="infoGroup">
@@ -93,12 +93,10 @@
                     
                 </div>
                 
-                <script>
-                    
-                </script>
-
+                
+                <a href="#" class="custom-button">Skills</a>
                 <div class = "info">
-                    <a href="#" class="custom-button">Skills</a>
+                    
                     <div class = "contactGroup">
                         
                         <textarea class="infoText" id = "skills">{{ skills_text }}</textarea>
@@ -106,8 +104,17 @@
                     </div>
                     
                 </div>
+
+                <a href="#" class="custom-button">Experience</a>
                 <div class = "info">
-                    <a href="#" class="custom-button">Experience</a>
+                    
+                    <textarea class="infoText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                
+                </div>
+
+                <a href="#" class="custom-button">Projects</a>
+                <div class = "info">
+                    
                     <textarea class="infoText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
                 
                 </div>
