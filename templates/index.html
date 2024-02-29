@@ -35,7 +35,7 @@
                 <form method="POST"  >
                     <label for="websiteLink">Application Link:</label>
                     <input type="text" id="websiteLink" name="text" placeholder="Enter website link" class="infoText">
-                    <input type="submit" value="Personalize" class="custom-button">
+                    <input type="submit" value="Personalize" id="custom-button-edit">
                 </form>
                 
                 
@@ -59,15 +59,14 @@
                         
                         <div class = "infoGroup" id="websitesContainer">
                             <div>
-                                <button id="addWebsiteButton">Add Website</button>
-                                <button id="deleteWebsiteButton">Delete Website</button>
+                                <button id="addWebsiteButton" id="custom-button-edit">Add Website</button>
                             </div>
-                            
 
                             {% for website in websites %}
                             <div class="infoGroup">
-                                <label for="Website{{ loop.index }}" class="custom-label" id = "webisteInfo{{loop.index}}" style="vertical-align: middle;">Website {{ loop.index }}:</label>
+                                <label for="Website{{ loop.index }}" class="custom-label" id = "websiteInfo{{loop.index}}" style="vertical-align: middle;">Website {{ loop.index }}:</label>
                                 <input class="infoText_websiteInput" id="Website{{ loop.index }}" data-index="{{ loop.index }}" style="vertical-align: middle;" value="{{ website }}"></input>
+                                <button class="deleteWebsiteButton" id="custom-button-edit" data-index="{{ loop.index }}">Delete</button>
                             </div>
                             {% endfor %}
                             
@@ -79,16 +78,25 @@
                 <a href="#" class="custom-button">Education</a>
                 <div class = "info">
                     
-                    <div class = "contactGroup">
+                    <div class = "contactGroup" >
+
+                        <div>
+                            <button id="addEducationButton" >Add Education</button>
+                        </div>
+                        <div id="educationsContainer">
+                            
+                        
                         {% for education in educations %}
                             <div class="infoGroup">
                                 {% set educationIndex = loop.index %}
-                                <label for="Education{{ educationIndex }}" class="custom-label" style="vertical-align: middle;">Education {{ educationIndex }}:</label>
+                                <label for="Education{{ educationIndex }}" id ="Education{{ educationIndex }}" class="custom-label" style="vertical-align: middle;">Education {{ educationIndex }}:</label>
                                 <input class="infoText_educationName" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.name }}" placeholder="Institution"></input>
                                 <input class="infoText_educationGPA" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.gpa }}" placeholder="GPA"></input>
-                                <button class="deleteEducationButton" data-index="{{ educationIndex }}">Delete</button>
+                                <button class="deleteEducationButton" id="custom-button-edit" data-index="{{ educationIndex }}">Delete</button>
                             </div>
                         {% endfor %}
+                    </div>
+                        
                     </div>
                     
                 </div>
