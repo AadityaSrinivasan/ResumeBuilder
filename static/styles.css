@@ -64,12 +64,12 @@ body {
 
 .main-content {
     display: flex; /* To allow flex children to take up full height */
-    flex: 1; /* Take up remaining vertical space */
+    
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2vh 2vw rgba(0, 0, 0, 0.2);
-    padding: 2%;
-    justify-content: space-between;
+    padding: 1%;
+    max-height: 100vh;
     
 }
 
@@ -83,6 +83,8 @@ body {
 #rightCol{
     justify-content: left;
     margin-left: 1%;
+    overflow: auto;
+    
 }
 
 
@@ -91,8 +93,10 @@ body {
     flex-direction: column; /* Arrange buttons vertically */
     justify-content: space-between; /* Align buttons to the top */
     height: 100%;
-    margin: 1vh;
-    width: 100%
+    overflow: auto;
+    min-height: 140vh;
+    width: 100%;
+    margin: auto 0;
     
 }
 .main-image {
@@ -121,34 +125,34 @@ body {
 
 /* CSS */
 .custom-button {
-  background: #3c0101c3;
-  border: 1px #3c0101c3;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  padding: 12px 14px;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  margin-bottom: 10px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  content: attr(data-text);
-  transition: all 0.6s ease;
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
 }
 
 
@@ -231,6 +235,8 @@ body {
     justify-content: space-evenly; /* Align buttons to the top */
     height: 75%;
     width: 100%;
+    overflow-y: auto;
+    margin-top: 10px;
 }
 
 
@@ -239,7 +245,7 @@ body {
     /* Ensure it has enough height to contain .contactGroup */
     /* For example: */
     height: 30vh; /* Adjust as needed */
-    overflow-y: auto; /* Add scrollbar if content exceeds height */
+    overflow: auto; /* Add scrollbar if content exceeds height */
     width: 100%;
 }
 

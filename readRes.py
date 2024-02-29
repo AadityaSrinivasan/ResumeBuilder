@@ -191,6 +191,7 @@ def getGPA(sentence):
 
     gpa_pattern = r'\b[0-4]\.\d{1,4}\b'
     gpas = re.findall(gpa_pattern, sentence)
+    
     if gpas:
         return gpas
     else:
@@ -243,7 +244,8 @@ def extract_education(input_text):
     
     finalEducations = refineEdus(list(educations))
     
-
+    if len(gpa) != len(finalEducations):
+        gpa += ["0.00"] * (len(finalEducations) - len(gpa))
     for index, element in enumerate(finalEducations):
         finalEducations[index] = Education(element, gpa[index])
 
@@ -254,7 +256,7 @@ def getWebsites(text):
 
     # Use re.findall to extract websites from the text
     websites = re.findall(website_pattern, text)
-
+    print(websites)
     return websites
 
 
