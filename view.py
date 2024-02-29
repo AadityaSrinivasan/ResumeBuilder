@@ -105,7 +105,10 @@ def update_dataList():
         return 'Data received successfully'
     elif field!= 'eduName':
         # Update the analysis_results or perform necessary actions with field and value
-        analysis_results[field][int(index)-1] = value
+        if(int(index) > len( analysis_results[field])):
+            analysis_results[field].append(value)
+        else:
+            analysis_results[field][int(index)-1] = value
         printData()
         # Return a response if needed
         return 'Data received successfully'
@@ -120,6 +123,14 @@ def update_educations():
     printData()
     return 'Data received successfully'
 
+@view.route('/update_website', methods=['POST'])
+def update_websites():
+    #gotta fix bc when you delete more than once the indexes can become messed up.
+    index = request.json['index']
+    print(int(index)-1)
+    del analysis_results['website'][int(index)-1]
+    printData()
+    return 'Data received successfully'
 
 # get inp ut from website scraper
 
