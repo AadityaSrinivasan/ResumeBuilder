@@ -102,6 +102,8 @@
                 </div>
                 
                 
+                
+
                 <a href="#" class="custom-button">Skills</a>
                 <div class = "info">
                     
@@ -114,6 +116,26 @@
                 </div>
 
                  
+                <a href="#" class="custom-button">Experience</a>
+                <div class="info">
+                    <div class="contactGroup">
+                        <div>
+                            <button id="addExperienceButton">Add Experience</button>
+                        </div>
+                        <div id="experiencesContainer">
+                            {% for experience in experiences %}
+                            <div class="infoGroup">
+                                {% set experienceIndex = loop.index %}
+                                <label for="Experience{{ experienceIndex }}" id="Experience{{ experienceIndex }}" class="custom-label" style="vertical-align: middle;">Experience {{ experienceIndex }}:</label>
+                                <input class="infoText_experienceTitle" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.title }}" placeholder="Title"></input>
+                                <input class="infoText_experienceCompany" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.company }}" placeholder="Company"></input>
+                                <textarea class="infoText_experienceDescription" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" placeholder="Description">{{ experience.description }}</textarea>
+                                <button class="deleteExperienceButton" id="custom-button-edit" data-index="{{ experienceIndex }}">Delete</button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
 
 
                 <a href="#" class="custom-button">Projects</a>
