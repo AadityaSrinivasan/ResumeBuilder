@@ -87,8 +87,8 @@
                             
                         
                         {% for education in educations %}
-                            <div class="infoGroup">
-                                {% set educationIndex = loop.index %}
+                            {% set educationIndex = loop.index %}
+                            <div class="infoGroup" id = "educationDiv" data-index="{{ educationIndex }}">
                                 <label for="Education{{ educationIndex }}" id ="Education{{ educationIndex }}" class="custom-label" style="vertical-align: middle;">Education {{ educationIndex }}:</label>
                                 <input class="infoText_educationName" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.name }}" placeholder="Institution"></input>
                                 <input class="infoText_educationGPA" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.gpa }}" placeholder="GPA"></input>
@@ -113,12 +113,8 @@
                     
                 </div>
 
-                <a href="#" class="custom-button">Experience</a>
-                <div class = "info">
-                    
-                    <textarea class="infoText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-                
-                </div>
+                 
+
 
                 <a href="#" class="custom-button">Projects</a>
                 <div class = "info">
