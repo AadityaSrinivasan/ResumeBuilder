@@ -116,6 +116,7 @@ def update_dataList():
 
 @view.route('/update_educations', methods=['POST'])
 def update_educations():
+    print("in update educations gabgbabg")
     #gotta fix bc when you delete more than once the indexes can become messed up.
     index = request.json['index']
     print(int(index)-1)

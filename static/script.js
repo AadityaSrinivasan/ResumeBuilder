@@ -150,6 +150,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Create a new infoGroup div for the new website
         var newEduDiv = document.createElement('div');
         newEduDiv.className = 'infoGroup';
+        newEduDiv.setAttribute('data-index', newIndex);
+        newEduDiv.id = 'educationDiv';
 
         // Create label for the new website
         var newLabel = document.createElement('label');
@@ -241,13 +243,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var index = button.getAttribute('data-index');
             console.log('index for deleting education is' + index);
             // Find the corresponding education div and remove it
-            var educationDiv = document.querySelector('.infoText_educationName[data-index="' + index + '"]').closest('.infoGroup');
+            //var educationDiv = document.querySelector('.infoText_educationName[data-index="' + index + '"]').closest('.infoGroup');
+            var educationDiv = document.querySelector('#educationDiv[data-index="' + index + '"]');
             if (educationDiv) {
                 educationDiv.remove();
-
                 // Update the data-index attributes for the remaining education entries
                 updateEducationIndices();
-
                 // Update the server-side list
                 updateServerSideList(index);
             }
@@ -270,29 +271,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateEducationIndices() {
         // Get all education divs
-        var educationDivs = document.querySelectorAll('.infoGroup');
-
+        var educationDivs = document.querySelectorAll('div[id^="educationDiv"]');
+        console.log("Length of educationDivs:", educationDivs.length);
         // Update data-index attributes for each education div
         educationDivs.forEach(function (educationDiv, index) {
             educationDiv.querySelectorAll('[data-index]').forEach(function (element) {
                 var currentDataIndex = element.getAttribute('data-index');
-                console.log('Current data-index:', currentDataIndex);
+                console.log('current data index is: ', currentDataIndex)
+                var newIndex= index + 1
+                console.log('new data index is: ', newIndex)
+                
                 
                 // Decrement the data-index attribute
-                element.setAttribute('data-index', index - 3);
+                educationDiv.setAttribute('data-index', newIndex);
 
                 var label = educationDiv.querySelector('label[for^="Education"]');
                 if (label) {
-                    label.textContent = 'Education ' + (index - 3) + ':';
+                    console.log('changing name')
+                    label.textContent = 'Education ' + (newIndex) + ':';
+                    label.setAttribute('for', 'Education' + newIndex);
+                    label.id = 'Education' + newIndex;
+                    
                 }
 
                 var input = educationDiv.querySelector('.infoText_educationName');
                 if (input) {
-                    input.setAttribute('id', 'Education' + (index - 3));
+                    input.setAttribute('id', 'Education' + (newIndex));
+                    input.setAttribute('data-index', newIndex);
+                }
+
+                var input = educationDiv.querySelector('.infoText_educationGPA');
+                if (input) {
+                    input.setAttribute('id', 'Education' + (newIndex));
+                    input.setAttribute('data-index', newIndex);
+                }
+
+                var deleteButton = educationDiv.querySelector('.deleteEducationButton');
+                if (deleteButton) {
+                    deleteButton.setAttribute('data-index', newIndex);
                 }
                 
                 // Log the updated data-index
-                console.log('Updated data-index:', element.getAttribute('data-index'));
+                console.log('end of 1 div')
             });
         });
     }
