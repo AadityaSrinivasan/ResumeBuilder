@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateEducationIndices();
 
                 // Update the server-side list
-                //updateServerSideList(index);
+                updateServerSideList(index);
             }
         });
         // Append the newWebsiteDiv to the websitesContainer
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Update the data-index attributes for the remaining education entries
                 updateEducationIndices();
                 // Update the server-side list
-                //updateServerSideList(index);
+                updateServerSideList(index);
             }
         });
     });
@@ -325,6 +325,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Log the updated data-index
                 console.log('end of 1 div')
             });
+        });
+    }
+
+    function updateServerSideList(index) {
+        fetch('/update_educations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                index: index,
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Data sent successfully');
+            } else {
+                console.error('Error sending data');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
     }
 
