@@ -54,11 +54,14 @@ def home():
                 pdf_images = convert_from_bytes(pdf_content, dpi=200, first_page=1, last_page=1)
                 if pdf_images:
                     pdf_image = pdf_images[0]
+                
                 pdf_file.seek(0)  # Reset the file pointer
                 text = extract_text_from_pdf(BytesIO(pdf_content))
                 
                 analysis_results = analyzeRes(text, temp_file_path)
                 uploaded_pdf = pdf_file
+
+
             elif uploaded_pdf != None:
                 print('gabagoo')
     

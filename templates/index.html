@@ -135,11 +135,16 @@
                     {% for project in projects %}
                         {% set projectIndex = loop.index %}
                         <div class="infoGroup" id = "projectDiv" data-index="{{ projectIndex }}" >
-                            
                             <label for="Project{{ projectIndex }}" id ="Project{{ projectIndex }}" class="custom-label" style="vertical-align: middle;">Project {{ projectIndex }}:</label>
-                            <input class="infoText_projectName" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.name }}" placeholder="Project Name"></input>
-                            <input class="infoText_projectTech" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.tech }}" placeholder="Languages/Frameworks"></input>
-                            <button class="deleteProjectButton" id="custom-button-edit" data-index="{{ projectIndex }}">Delete</button>
+                            <div class="horizontalInputs">
+                                <input class="infoText_projectName" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.name }}" placeholder="Project Name"></input>
+                                <input class="infoText_projectTech" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.tech }}" placeholder="Languages/Frameworks"></input>
+                                <button class="deleteProjectButton" id="custom-button-edit" data-index="{{ projectIndex }}">Delete</button>
+                            
+                            </div>
+                            
+                            <input class="infoText_projectInfo" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.info }}" placeholder="Description"></input>
+                            
                         </div>
                     {% endfor %}
                     {% endif %}

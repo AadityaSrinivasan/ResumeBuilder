@@ -388,6 +388,13 @@ document.addEventListener('DOMContentLoaded', function () {
         newInputTech.setAttribute('data-index', newIndex);
         newInputTech.style.verticalAlign = 'middle';
 
+        var newInputInfo = document.createElement('input');
+        newInputInfo.className = 'infoText_projectInfo';
+        newInputInfo.id = 'Project' + newIndex;
+        newInputInfo.placeholder = 'Description';
+        newInputInfo.setAttribute('data-index', newIndex);
+        newInputInfo.style.verticalAlign = 'middle';
+
 
         // Create delete button for the new website
         var newDeleteButton = document.createElement('button');
