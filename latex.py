@@ -1,5 +1,19 @@
 import os
 import subprocess  # Add this line to import the subprocess module
+import matplotlib.pyplot as plt
+from pdf2image import convert_from_path, convert_from_bytes
+
+
+def convert_pdf_to_image(pdf_path):
+    with open(pdf_path, "rb") as pdf_file:
+        pdf_content = pdf_file.read()
+        pdf_images = convert_from_bytes(pdf_content, dpi=200, first_page=1, last_page=1)
+        if pdf_images:
+            pdf_image = pdf_images[0]
+            return pdf_image
+    return None
+
+
 
 def fill_latex_template(name, email, education, experience, skills):
     with open("template.tex", "r") as file:
@@ -59,38 +73,22 @@ def compile_to_pdf():
 def generate_education_section(educations):
     education_code = ""
     for education in educations:
-        education_code += "\\resumeSubheading{" + education['institution'] + "}{" + education['location'] + "}{" + education['degree'] + "}{" + education['date'] + "}\n"
+        name = education.name.replace("&", "\\&")  # Replace '&' with '\&'
+        education_code += "\\resumeSubheading{" + name + "}{" + education.gpa + "}{" + "CPCS" + "}{"  "}\n"
     return education_code
 
 
-def main():
-    # Get inputs
-    name = input("Enter your name: ")
-    email = input("Enter your email: ")
-    experience = input("Enter your experience details: ")
-    skills = input("Enter your skills: ")
+
+def latexPDF(analysis_results):
+    # Get inputs from analysis_results
+    name = analysis_results.get('name', "")
+    email = analysis_results.get('email', "")
+    experience = analysis_results.get('experience', "")
+    skills = ", ".join(analysis_results.get('skills', []))
 
     # Generate education section
-    educations = [
-        {
-            'institution': 'Texas AM University',
-            'location': 'College Station, TX',
-            'degree': 'Bachelor of Science in Computer Science, Minor in Mathematics. GPA -- 3.931',
-            'date': 'Aug. 2022 -- May 2026'
-        },
-        {
-            'institution': 'Test University',
-            'location': 'Test City, TX',
-            'degree': 'Bachelor of Arts in Psychology',
-            'date': 'Sept. 2021 -- May 2025'
-        },
-        {
-            'institution': 'Another Test College',
-            'location': 'Testtown, TX',
-            'degree': 'Bachelor of Science in Biology',
-            'date': 'Aug. 2019 -- May 2023'
-        }
-    ]
+    educations = analysis_results.get('education')
+    print()
     education_section = generate_education_section(educations)
 
     # Fill in LaTeX template
@@ -100,10 +98,15 @@ def main():
     create_latex_file(template_content)
 
     # Compile LaTeX to PDF
-    compile_to_pdf()
+    try:
+        compile_to_pdf()
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while compiling LaTeX to PDF: {e}")
+        return None
+
+    # Convert PDF to image
+    pdf_image = convert_pdf_to_image("resume.pdf")
+    
 
     print("Resume generated successfully!")
-    print(education_section)
-
-if __name__ == "__main__":
-    main()
+    return pdf_image

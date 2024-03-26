@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,  jsonify, request
+from flask import Blueprint, render_template,  jsonify, request, url_for, redirect
 from io import BytesIO
 from readRes import*
 from pdf2image import convert_from_bytes
@@ -6,6 +6,7 @@ import base64
 import tempfile
 from readRes import Education
 from webscraper import get_skills_from_website
+from latex import latexPDF
 
 view = Blueprint(__name__,"view")
 global analysis_results
@@ -31,6 +32,7 @@ def printData():
 
 @view.route("/",  methods = ['GET', "POST"])
 def home():
+    print("inside sayok's mother")
     pdf_image = None
     nl = '\n'
     global analysis_results
@@ -50,14 +52,12 @@ def home():
                     temp_file.write(pdf_content)
                 temp_file_path = temp_file.name
 
-                pdf_images = convert_from_bytes(pdf_content, dpi=200, first_page=1, last_page=1)
-                if pdf_images:
-                    pdf_image = pdf_images[0]
                 pdf_file.seek(0)  # Reset the file pointer
                 text = extract_text_from_pdf(BytesIO(pdf_content))
                 
                 analysis_results = analyzeRes(text, temp_file_path)
                 uploaded_pdf = pdf_file
+                print(analysis_results)
             elif uploaded_pdf != None:
                 print('gabagoo')
     if analysis_results:
@@ -67,6 +67,12 @@ def home():
         website = analysis_results.get('website',[])
         educations = analysis_results.get('education')
         skills =', '.join(analysis_results.get('skills'))
+        pdf_image = latexPDF(analysis_results)
+        printData()
+        print("image created")
+
+
+
     else:
         name = ""
         number = ""
@@ -74,7 +80,6 @@ def home():
         website = ""
         educations = []
         skills = ""
-    
     return render_template("index.html", pdf_image= pdf_image, image_to_base64=image_to_base64,name_text=name, number_text=number,email_text=email,websites=website, educations=educations, skills_text=skills)
 
 @view.route('/update_data', methods=['POST'])
@@ -86,8 +91,12 @@ def update_data():
     # Update the analysis_results or perform necessary actions with field and value
     analysis_results[field] = value
     printData()
+    print("Update")
     # Return a response if needed
-    return 'Data received successfully'
+    
+    return home()
+
+
 
 @view.route('/update_dataList', methods=['POST'])
 def update_dataList():
