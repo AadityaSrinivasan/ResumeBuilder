@@ -63,6 +63,15 @@ class Education:
     
     def __str__(self):
         return f"{self.name} GPA: {self.gpa}"
+    
+class Project:
+    def __init__(self, name, tech,info):
+        self.name = name
+        self.tech = tech
+        self.info = info
+    
+    def __str__(self):
+        return f"Project Name: {self.name}\nTechnology: {self.tech}\nInfo: {self.info}"
 
 institution_patterns = [
     [{"LOWER": "college"}, {"POS": "ADP", "OP": "?"}, {"POS": "PROPN", "OP": "+"}],

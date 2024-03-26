@@ -4,7 +4,7 @@ from readRes import*
 from pdf2image import convert_from_bytes
 import base64 
 import tempfile
-from readRes import Education
+from readRes import Education, Project
 from webscraper import get_skills_from_website
 
 view = Blueprint(__name__,"view")
@@ -12,6 +12,7 @@ global analysis_results
 global web_keywords
 web_keywords = []
 analysis_results = {}
+
 uploaded_pdf = None
 
 
@@ -60,22 +61,29 @@ def home():
                 uploaded_pdf = pdf_file
             elif uploaded_pdf != None:
                 print('gabagoo')
+    
     if analysis_results:
         name = f"{analysis_results.get('name')}"
         number = f"{analysis_results.get('number')}"
         email = f"{analysis_results.get('email')}"
         website = analysis_results.get('website',[])
         educations = analysis_results.get('education')
+        print(analysis_results.get('skills'))
         skills =', '.join(analysis_results.get('skills'))
+        projects = analysis_results.get('projects')
     else:
+        
         name = ""
         number = ""
         email = ""
-        website = ""
+        website = []
         educations = []
         skills = ""
+        projects = []
     
-    return render_template("index.html", pdf_image= pdf_image, image_to_base64=image_to_base64,name_text=name, number_text=number,email_text=email,websites=website, educations=educations, skills_text=skills)
+    #function fo latex, access the stuff from analysis_results
+    
+    return render_template("index.html", pdf_image= pdf_image, image_to_base64=image_to_base64,name_text=name, number_text=number,email_text=email,websites=website, educations=educations, skills_text=skills, projects = projects)
 
 @view.route('/update_data', methods=['POST'])
 def update_data():
@@ -96,12 +104,52 @@ def update_dataList():
     value = request.json['value']
     index = request.json['index']
     if field == 'eduName':
-        analysis_results['education'][int(index)-1].name = value
-        printData()
+        if 'education' not in analysis_results:
+            analysis_results['education'] = [Education(value, 0.00)]
+        elif len(analysis_results['education']) >= int(index):
+            analysis_results['education'][int(index)-1].name = value
+            print('old name')
+            printData()
+        else:
+            print('new edu')
+            analysis_results['education'].append(Education(value, 0.00))
+            
+            printData()
         return 'Data received successfully'
     elif field == 'eduGPA':
-        analysis_results['education'][int(index)-1].gpa = value
-        printData()
+        if 'education' not in analysis_results:
+            analysis_results['education'] = [Education("", value)]
+        elif len(analysis_results['education']) >= int(index):
+            print('old gpa')
+            analysis_results['education'][int(index)-1].gpa = value
+            printData()
+        else:
+            print('new edu gpa') 
+            analysis_results['education'].append(Education("", value))
+            printData()
+        return 'Data received successfully'
+    #add elifs for the dif field for Projects and Experiences
+    elif field == 'projName':
+        if 'projects' not in analysis_results:
+            analysis_results['projects'] = [Project(value, "","")]
+        elif len(analysis_results['projects']) >= int(index):
+            analysis_results['projects'][int(index)-1].name = value
+            printData()
+        else:
+            print('new edu gpa') 
+            analysis_results['projects'].append(Project(value, "",""))
+            printData()
+        return 'Data received successfully'
+    elif field == 'projTech':
+        if 'projects' not in analysis_results:
+            analysis_results['projects'] = [Project("", value,"")]
+        elif len(analysis_results['projects']) >= int(index):
+            analysis_results['projects'][int(index)-1].tech = value
+            printData()
+        else:
+            print('new edu gpa') 
+            analysis_results['project'].append(Project(value, "",""))
+            printData()
         return 'Data received successfully'
     elif field!= 'eduName':
         # Update the analysis_results or perform necessary actions with field and value
