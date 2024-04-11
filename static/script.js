@@ -61,8 +61,24 @@ education_name_Inputs.forEach(input => {
     });
 });
 
+// stuff for projects
+const project_tech_Inputs = document.querySelectorAll('.infoText_projectTech');
+project_tech_Inputs.forEach(input => {
+    input.addEventListener('change', function() {
+        const index = this.dataset.index;
+        const updatedTech = this.value;
+        sendDataToServerList('projTech', index, updatedTech ); // Send data to server
+    });
+});
 
-//delete educations
+const project_name_Inputs = document.querySelectorAll('.infoText_projectName');
+project_name_Inputs.forEach(input => {
+    input.addEventListener('change', function() {
+        const index = this.dataset.index;
+        const updatedName = this.value;
+        sendDataToServerList('projName', index, updatedName ); // Send data to server
+    });
+});
 
 
 
@@ -209,31 +225,12 @@ document.addEventListener('DOMContentLoaded', function () {
         educationContainer.appendChild(newEduDiv);
 
         addEducationName(newIndex);
+        addEducationGPA(newIndex);
         
     });
 
 
-    function updateServerSideList(index) {
-        fetch('/update_educations', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                index: index,
-            })
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Data sent successfully');
-            } else {
-                console.error('Error sending data');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+   
 
     // Add click event listener to each delete button
     deleteEDUButtons.forEach(function (button) {
@@ -256,14 +253,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function addEducationName(index) {
-        const eduInputs = document.querySelectorAll('.infoText_EducationName');
+        const eduInputs = document.querySelectorAll('.infoText_educationName');
 
         // Add change event listener to each website input field
         eduInputs.forEach(input => {
             input.addEventListener('change', function() {
                 const index = this.dataset.index;
                 const updatedEdu= this.value;
-                sendDataToServerList('edu', index, updatedEdu ); // Send data to server
+                console.log("index inside is: " + index)
+                sendDataToServerList('eduName', index, updatedEdu ); // Send data to server
+            });
+        });
+    }
+
+    function addEducationGPA(index) {
+        const eduInputs = document.querySelectorAll('.infoText_educationGPA');
+
+        // Add change event listener to each website input field
+        eduInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const index = this.dataset.index;
+                const updatedEdu= this.value;
+                sendDataToServerList('eduGPA', index, updatedEdu ); // Send data to server
             });
         });
     }
@@ -317,6 +328,210 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function updateServerSideList(index) {
+        fetch('/update_educations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                index: index,
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Data sent successfully');
+            } else {
+                console.error('Error sending data');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+    //project stuff
+    var deleteProjectButtons = document.querySelectorAll('.deleteProjectButton');
+    var addProjectButton = document.getElementById('addProjectButton');
+    var projectContainer = document.getElementById('projectsContainer');
+    
+
+    addProjectButton.addEventListener('click', function () {
+        var newIndex = projectContainer.children.length;
+        newIndex += 1;
+        // Create a new infoGroup div for the new website
+        var newProjectDiv = document.createElement('div');
+        newProjectDiv.className = 'infoGroup';
+        newProjectDiv.setAttribute('data-index', newIndex);
+        newProjectDiv.id = 'projectDiv';
+
+        // Create label for the new website
+        var newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'Project' + newIndex);
+        newLabel.className = 'custom-label';
+        newLabel.id = 'Project' + newIndex;
+        newLabel.textContent = 'Project ' + newIndex + ':';
+
+        // Create input for the new website
+        var newInput = document.createElement('input');
+        newInput.className = 'infoText_projectName';
+        newInput.id = 'Project' + newIndex;
+        newInput.placeholder = 'Institution';
+        newInput.setAttribute('data-index', newIndex);
+        newInput.style.verticalAlign = 'middle';
+
+        var newInputTech = document.createElement('input');
+        newInputTech.className = 'infoText_projectTech';
+        newInputTech.id = 'Project' + newIndex;
+        newInputTech.placeholder = 'Languages/Frameworks';
+        newInputTech.setAttribute('data-index', newIndex);
+        newInputTech.style.verticalAlign = 'middle';
+
+        var newInputInfo = document.createElement('input');
+        newInputInfo.className = 'infoText_projectInfo';
+        newInputInfo.id = 'Project' + newIndex;
+        newInputInfo.placeholder = 'Description';
+        newInputInfo.setAttribute('data-index', newIndex);
+        newInputInfo.style.verticalAlign = 'middle';
+
+
+        // Create delete button for the new website
+        var newDeleteButton = document.createElement('button');
+        newDeleteButton.className = 'deleteProjectButton';
+        newDeleteButton.id = 'custom-button-edit'
+        newDeleteButton.setAttribute('data-index', newIndex);
+        newDeleteButton.textContent = 'Delete';
+
+        // Append the label and input to the newWebsiteDiv
+        newProjectDiv.appendChild(newLabel);
+        newProjectDiv.appendChild(newInput);
+        newProjectDiv.appendChild(newInputTech);
+        newProjectDiv.appendChild(newDeleteButton);
+
+        newDeleteButton.addEventListener('click', function() {
+            // Get the index from the data-index attribute
+            var index = newDeleteButton.getAttribute('data-index');
+            // Find the corresponding education div and remove it
+            var newProjectDiv = document.querySelector('.infoText_projectName[data-index="' + index + '"]').closest('.infoGroup');
+            if (newProjectDiv) {
+                console.log('Deleting project with index ' + index + ': ' + newProjectDiv.textContent);
+                newProjectDiv.remove();
+                console.log('gagbagoo' + index);
+                // Update the data-index attributes for the remaining education entries
+                updateProjectIndices();
+
+                // Update the server-side list
+                //updateServerSideList(index);
+            }
+        });
+        // Append the newWebsiteDiv to the websitesContainer
+        projectContainer.appendChild(newProjectDiv);
+
+        addProjectName(newIndex);
+        addProjectTech(newIndex);
+        
+    });
+
+
+   
+
+    // Add click event listener to each delete button
+    deleteProjectButtons.forEach(function (button) {
+        
+        button.addEventListener('click', function () {
+            // Get the index from the data-index attribute
+            var index = button.getAttribute('data-index');
+            console.log('index for deleting project is' + index);
+            // Find the corresponding education div and remove it
+            //var educationDiv = document.querySelector('.infoText_educationName[data-index="' + index + '"]').closest('.infoGroup');
+            var projectDiv = document.querySelector('#projectDiv[data-index="' + index + '"]');
+            if (projectDiv) {
+                projectDiv.remove();
+                // Update the data-index attributes for the remaining education entries
+                updateProjectIndices();
+                // Update the server-side list
+                //updateServerSideList(index);
+            }
+        });
+    });
+
+    function addProjectName(index) {
+        const projInputs = document.querySelectorAll('.infoText_projectName');
+
+        // Add change event listener to each website input field
+        projInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const index = this.dataset.index;
+                const updatedProj= this.value;
+                console.log("index inside is: " + index)
+                sendDataToServerList('projName', index, updatedProj ); // Send data to server
+            });
+        });
+    }
+
+    function addProjectTech(index) {
+        const projInputs = document.querySelectorAll('.infoText_projectTech');
+
+        // Add change event listener to each website input field
+        projInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const index = this.dataset.index;
+                const updatedProj= this.value;
+                console.log("index inside is: " + index)
+                sendDataToServerList('projTech', index, updatedProj ); // Send data to server
+            });
+        });
+    }
+
+
+    function updateProjectIndices() {
+        // Get all education divs
+        var projectDivs = document.querySelectorAll('div[id^="projectDiv"]');
+        console.log("Length of educationDivs:", projectDivs.length);
+        // Update data-index attributes for each education div
+        projectDivs.forEach(function (projectDiv, index) {
+            projectDiv.querySelectorAll('[data-index]').forEach(function (element) {
+                var currentDataIndex = element.getAttribute('data-index');
+                console.log('current data index is: ', currentDataIndex)
+                var newIndex= index + 1
+                console.log('new data index is: ', newIndex)
+                
+                
+                // Decrement the data-index attribute
+                projectDiv.setAttribute('data-index', newIndex);
+
+                var label = projectDiv.querySelector('label[for^="Project"]');
+                if (label) {
+                    console.log('changing name')
+                    label.textContent = 'Project ' + (newIndex) + ':';
+                    label.setAttribute('for', 'Project' + newIndex);
+                    label.id = 'Project' + newIndex;
+                    
+                }
+
+                var input = projectDiv.querySelector('.infoText_projectName');
+                if (input) {
+                    input.setAttribute('id', 'Project' + (newIndex));
+                    input.setAttribute('data-index', newIndex);
+                }
+
+                var input = projectDiv.querySelector('.infoText_projectTech');
+                if (input) {
+                    input.setAttribute('id', 'Project' + (newIndex));
+                    input.setAttribute('data-index', newIndex);
+                }
+
+                var deleteButton = projectDiv.querySelector('.deleteProjectButton');
+                if (deleteButton) {
+                    deleteButton.setAttribute('data-index', newIndex);
+                }
+                
+                // Log the updated data-index
+                console.log('end of 1 div')
+            });
+        });
+    }
 
 
     
