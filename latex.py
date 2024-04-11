@@ -15,19 +15,6 @@ def convert_pdf_to_image(pdf_path):
 
 
 
-def fill_latex_template(name, email, education, experience, skills):
-    with open("template.tex", "r") as file:
-        template_content = file.read()
-
-    # Replace placeholders with actual content
-    template_content = template_content.replace("%%NAME%%", name)
-    template_content = template_content.replace("%%EMAIL%%", email)
-    template_content = template_content.replace("%%EDUCATION%%", education)
-    template_content = template_content.replace("%%EXPERIENCE%%", experience)
-    template_content = template_content.replace("%%SKILLS%%", skills)
-
-    return template_content
-
 def create_latex_file(template_content):
     with open("resume.tex", "w") as file:
         file.write(template_content)
