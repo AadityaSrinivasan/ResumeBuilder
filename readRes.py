@@ -63,12 +63,25 @@ class Education:
     
     def __str__(self):
         return f"{self.name} GPA: {self.gpa}"
+
+class Experience:
+    def __init__(self, title, company, startDate, endDate, info):
+        self.title = title
+        self.company = company
+        self.startDate = startDate
+        self.endDate = endDate #0 meanns currently working
+        self.info = info
+
+    
+    def __str__(self):
+        return f"{self.name} GPA: {self.gpa}"
     
 class Project:
-    def __init__(self, name, tech,info):
+    def __init__(self, name, tech,info, date):
         self.name = name
         self.tech = tech
         self.info = info
+        self.date = date
     
     def __str__(self):
         return f"Project Name: {self.name}\nTechnology: {self.tech}\nInfo: {self.info}"
