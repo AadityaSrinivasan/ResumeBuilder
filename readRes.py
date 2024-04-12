@@ -65,26 +65,29 @@ class Education:
         return f"{self.name} GPA: {self.gpa}"
 
 class Experience:
-    def __init__(self, title, company, startDate, endDate, info):
+    def __init__(self, title="", company="", startDate="", endDate=0, info=""):
         self.title = title
         self.company = company
         self.startDate = startDate
         self.endDate = endDate #0 meanns currently working
         self.info = info
-
-    
     def __str__(self):
-        return f"{self.name} GPA: {self.gpa}"
+        if self.endDate == 0:
+            end_date = "Currently Working"
+        else:
+            end_date = str(self.endDate)
+        return f"Title: {self.title}\nCompany: {self.company} Start Date: {self.startDate} End Date: {end_date} Info: {self.info}"
     
 class Project:
-    def __init__(self, name, tech,info, date):
+    def __init__(self, name="Unnamed Project", tech="Unknown", info="No additional information", date="Unknown"):
         self.name = name
         self.tech = tech
         self.info = info
         self.date = date
     
     def __str__(self):
-        return f"Project Name: {self.name}\nTechnology: {self.tech}\nInfo: {self.info}"
+        return f"Project Name: {self.name} | Technology: {self.tech} | Date: {self.date} | Info: {self.info}"
+
 
 institution_patterns = [
     [{"LOWER": "college"}, {"POS": "ADP", "OP": "?"}, {"POS": "PROPN", "OP": "+"}],
