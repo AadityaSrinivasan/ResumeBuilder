@@ -23,11 +23,17 @@ def image_to_base64(image):
 
 def printData():
     for key, value in analysis_results.items():
-        if key!= 'education':
-            print(f"{key}: {value}")
-        else:
+        if key == 'education':
             for index, x in enumerate(value):
                 print(f'Education {index + 1}: {x}')
+        elif key == "projects":
+            for index, x in enumerate(value):
+                print(f'Project {index + 1}: {x}')
+        elif key == "experiences":
+            for index, x in enumerate(value):
+                print(f'Experience {index + 1}: {x}')
+        else:
+            print(f"{key}: {value}")
 
 
 @view.route("/",  methods = ['GET', "POST"])
@@ -71,7 +77,7 @@ def home():
         email = f"{analysis_results.get('email')}"
         website = analysis_results.get('website',[])
         educations = analysis_results.get('education')
-        print(analysis_results.get('skills'))
+        experiences = analysis_results.get('experience')
         skills =', '.join(analysis_results.get('skills'))
         projects = analysis_results.get('projects')
     else:
@@ -83,10 +89,11 @@ def home():
         educations = []
         skills = ""
         projects = []
+        experiences = []
     
     #function fo latex, access the stuff from analysis_results
     
-    return render_template("index.html", pdf_image= pdf_image, image_to_base64=image_to_base64,name_text=name, number_text=number,email_text=email,websites=website, educations=educations, skills_text=skills, projects = projects)
+    return render_template("index.html", pdf_image= pdf_image, image_to_base64=image_to_base64,name_text=name, number_text=number,email_text=email,websites=website, educations=educations, skills_text=skills, projects = projects, experiences = experiences)
 
 @view.route('/update_data', methods=['POST'])
 def update_data():
@@ -127,37 +134,122 @@ def update_dataList():
             analysis_results['education'][int(index)-1].gpa = value
             printData()
         else:
-            print('new edu gpa') 
+             
             analysis_results['education'].append(Education("", value))
             printData()
         return 'Data received successfully'
     #add elifs for the dif field for Projects and Experiences
     elif field == 'projName':
         if 'projects' not in analysis_results:
-            analysis_results['projects'] = [Project(value, "","")]
+            analysis_results['projects'] = [Project(name = value)]
         elif len(analysis_results['projects']) >= int(index):
             analysis_results['projects'][int(index)-1].name = value
             printData()
         else:
-            print('new edu gpa') 
-            analysis_results['projects'].append(Project(value, "",""))
+            
+            analysis_results['projects'].append(Project(name = value))
             printData()
         return 'Data received successfully'
     elif field == 'projTech':
         if 'projects' not in analysis_results:
-            analysis_results['projects'] = [Project("", value,"")]
+            analysis_results['projects'] = [Project(tech = value)]
+            printData()
         elif len(analysis_results['projects']) >= int(index):
             analysis_results['projects'][int(index)-1].tech = value
             printData()
         else:
-            print('new edu gpa') 
-            analysis_results['project'].append(Project(value, "",""))
+            
+            analysis_results['project'].append(Project(tech = value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'projDate':
+        if 'projects' not in analysis_results:
+            analysis_results['projects'] = [Project(date=value)]
+            printData()
+        elif len(analysis_results['projects']) >= int(index):
+            analysis_results['projects'][int(index)-1].date = value
+            printData()
+        else:
+            analysis_results['project'].append(Project(date= value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'projInfo':
+        if 'projects' not in analysis_results:
+            analysis_results['projects'] = [Project(info=value)]
+            printData()
+        elif len(analysis_results['projects']) >= int(index):
+            analysis_results['projects'][int(index)-1].info = value
+            printData()
+        else:
+            
+            analysis_results['project'].append(Project(info= value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'experienceTitle':
+        if 'experiences' not in analysis_results:
+            analysis_results['experiences'] = [Experience(title=value)]
+            printData()
+        elif len(analysis_results['experiences']) >= int(index):
+            analysis_results['experiences'][int(index)-1].title = value
+            printData()
+        else:
+            
+            analysis_results['experiences'].append(Experience(title=value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'experienceCompany':
+        if 'experiences' not in analysis_results:
+            analysis_results['experiences'] = [Experience(company=value)]
+            printData()
+        elif len(analysis_results['experiences']) >= int(index):
+            analysis_results['experiences'][int(index)-1].company = value
+            printData()
+        else:
+           
+            analysis_results['experiences'].append(Experience(company=value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'experienceStartDate':
+        if 'experiences' not in analysis_results:
+            analysis_results['experiences'] = [Experience(startDate=value)]
+            printData()
+        elif len(analysis_results['experiences']) >= int(index):
+            analysis_results['experiences'][int(index)-1].startDate = value
+            printData()
+        else:
+           
+            analysis_results['experiences'].append(Experience(startDate=value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'experienceEndDate':
+        if 'experiences' not in analysis_results:
+            analysis_results['experiences'] = [Experience(endDate=value)]
+            printData()
+        elif len(analysis_results['experiences']) >= int(index):
+            analysis_results['experiences'][int(index)-1].endDate = value
+            printData()
+        else:
+           
+            analysis_results['experiences'].append(Experience(endDate=value))
+            printData()
+        return 'Data received successfully'
+    elif field == 'experienceInfo':
+        if 'experiences' not in analysis_results:
+            analysis_results['experiences'] = [Experience(info=value)]
+            printData()
+        elif len(analysis_results['experiences']) >= int(index):
+            analysis_results['experiences'][int(index)-1].info = value
+            printData()
+        else:
+            
+            analysis_results['experiences'].append(Experience(info=value))
             printData()
         return 'Data received successfully'
     elif field!= 'eduName':
         # Update the analysis_results or perform necessary actions with field and value
         if(int(index) > len( analysis_results[field])):
             analysis_results[field].append(value)
+            printData()
         else:
             analysis_results[field][int(index)-1] = value
         printData()

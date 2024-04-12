@@ -190,6 +190,114 @@ body {
   color: #3c0101c3;
 }
 
+#addEducationButton{
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    min-height: 20px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
+}
+
+#addEducationButton:hover,
+#addEducationButton:active {
+  background-color: white;
+  background-position: 0 0;
+  color: #3c0101c3;
+}
+
+
+#addProjectButton{
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    min-height: 20px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
+}
+
+#addProjectButton:hover,
+#addProjectButton:active {
+  background-color: white;
+  background-position: 0 0;
+  color: #3c0101c3;
+}
+
+#addExperienceButton{
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    min-height: 20px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
+}
+
+#addExperienceButton:hover,
+#addExperienceButton:active {
+  background-color: white;
+  background-position: 0 0;
+  color: #3c0101c3;
+}
+
+
+
 #custom-button-edit {
     background: #3c0101c3;
     border: 1px #3c0101c3;
@@ -217,6 +325,8 @@ body {
     content: attr(data-text);
     transition: all 0.6s ease;
 }
+
+
 
 #custom-button-edit:hover,
 #custom-button-edit:active {
@@ -325,7 +435,12 @@ body {
 }
 .infoGroup{
     display: inline-block;
+    width: 100%;
     
+}
+
+.infoGroup > * {
+    margin-right: 10px; /* Add space between items horizontally */
 }
 #websitesContainer{
     overflow: auto;
@@ -372,3 +487,78 @@ body {
     border-color: #3c0101c3; /* Change color on focus */
     box-shadow: 0 0 5px #3c0101c3;
 }
+
+
+
+#experienceForm {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.2em solid #f1f1f1;
+    background-color: white; /* Set background color to white */
+    z-index: 9;
+    width: 35%;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+#experienceForm button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#experiencesContainer {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Align children vertically */
+}
+
+
+#experienceForm label {
+    margin-bottom: 0.5em; /* Add space below labels */
+}
+
+
+
+#experienceForm textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+
+#experienceForm input,
+#experienceForm textarea{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-bottom-color: #3c0101;
+    border-top-color: #ffffff00;
+    border-left-color:  #ffffff00;
+    border-right-color:  #ffffff00;
+    
+}
+
+
+#experienceForm textarea :focus{
+    outline: none;
+    border-color: #3c0101c3; /* Change color on focus */
+    box-shadow: 0 0 5px #3c0101c3;
+}
+
+#experienceForm input:focus{
+    outline: none;
+    border-color: #3c0101c3; /* Change color on focus */
+    box-shadow: 0 0 5px #3c0101c3;
+}
+
+
+
+
+
+
+
+
+
