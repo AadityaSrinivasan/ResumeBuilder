@@ -31,181 +31,186 @@
             
         </div>
         <div class = "col" id = "rightCol">
+            <form method="POST"  >
+                <label for="websiteLink">Application Link:</label>
+                <input type="text" id="websiteLink" name="text" placeholder="Enter website link" class="infoText">
+                <input type="submit" value="Personalize" id="custom-button-edit">
+            </form>
+            <div style="text-align:center">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
             <div class = "buttons">
-                <form method="POST"  >
-                    <label for="websiteLink">Application Link:</label>
-                    <input type="text" id="websiteLink" name="text" placeholder="Enter website link" class="infoText">
-                    <input type="submit" value="Personalize" id="custom-button-edit">
-                </form>
                 
-                
-                <a href="#" class="custom-button">Contact</a>
-                <div class = "info">
-                    <div class = "contactGroup">
-                        <div class = "infoGroup">
-                            <label for="Name" class="custom-label" style="vertical-align: middle;">Name:</label>
-                            <input class="infoText" id = "Name" style="vertical-align: middle;" value = "{{ name_text }}" ></input>
-                        </div>
-                        
-                        <div class = "infoGroup">
-                            <label for="Number" class="custom-label" style="vertical-align: middle;">Number:</label>
-                            <input class="infoText" id = "Number" style="vertical-align: middle;" value = "{{ number_text }}"></input>
-                        </div>
-                        
-                        <div class = "infoGroup">
-                            <label for="Email" class="custom-label" style="vertical-align: middle;">Email:</label>
-                            <input class="infoText" id = "Email" style="vertical-align: middle;" value = "{{ email_text }}"></input>
-                        </div>
-                        
-                        <div class = "infoGroup" id="websitesContainer">
-                            <div>
-                                <button id="addWebsiteButton" id="custom-button-edit">Add Website</button>
-                            </div>
 
-                            {% for website in websites %}
-                            <div class="infoGroup">
-                                <label for="Website{{ loop.index }}" class="custom-label" id = "websiteInfo{{loop.index}}" style="vertical-align: middle;">Website {{ loop.index }}:</label>
-                                <input class="infoText_websiteInput" id="Website{{ loop.index }}" data-index="{{ loop.index }}" style="vertical-align: middle;" value="{{ website }}"></input>
-                                <button class="deleteWebsiteButton" id="custom-button-edit" data-index="{{ loop.index }}">Delete</button>
-                            </div>
-                            {% endfor %}
-                            
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <a href="#" class="custom-button">Education</a>
-                <div class = "info">
-                    
-                    <div class = "contactGroup" >
-
-                        <div>
-                            <button id="addEducationButton" id="custom-button-edit" >Add Education</button>
-                        </div>
-                        <div id="educationsContainer">
-                            
-                            {% if educations %}
-                        {% for education in educations %}
-                            {% set educationIndex = loop.index %}
-                            <div class="infoGroup" id = "educationDiv" data-index="{{ educationIndex }}" >
+    
+                    <div class = "info" id = "contact">
+                        <div class = "inside"  id = "contact">
+                            <a href="#" class="custom-button">Contact</a>
+                            <div class = "contactGroup">
+                                <div class = "infoGroup">
+                                    <label for="Name" class="custom-label" style="vertical-align: middle;">Name:</label>
+                                    <input class="infoText" id = "Name" style="vertical-align: middle;" value = "{{ name_text }}" ></input>
+                                </div>
                                 
-                                <label for="Education{{ educationIndex }}" id ="Education{{ educationIndex }}" class="custom-label" style="vertical-align: middle;">Education {{ educationIndex }}:</label>
-                                <input class="infoText_educationName" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.name }}" placeholder="Institution"></input>
-                                <input class="infoText_educationGPA" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.gpa }}" placeholder="GPA"></input>
-                                <button class="deleteEducationButton" id="custom-button-edit" data-index="{{ educationIndex }}">Delete</button>
-                            </div>
-                        {% endfor %}
-
-                        {% endif %}
-                    </div>
-                        
-                    </div>
-                    
-                </div>
-                
-                
-                <a href="#" class="custom-button">Skills</a>
-                <div class = "info">
-                    
-                    <div class = "contactGroup">
-                        
-                        <textarea class="infoText" id = "skills">{{ skills_text }}</textarea>
-                       
-                    </div>
-                    
-                </div>
-
-
-
-
-
-
-
-
-
-                <a href="#" class="custom-button">Experience</a>
-                <div class = "info">
-
-                    <div>
-                        <button id="addExperienceButton">Add Experience</button>
-                    </div>
-
-                    <div id="experiencesContainer">
-                        {% if experiences %}
-                            {% for experience in experiences %}
-                                {% set experienceIndex = loop.index %}
-                                <div class="infoGroup" id = "experienceDiv" data-index="experience{{ experienceIndex }}" >
+                                <div class = "infoGroup">
+                                    <label for="Number" class="custom-label" style="vertical-align: middle;">Number:</label>
+                                    <input class="infoText" id = "Number" style="vertical-align: middle;" value = "{{ number_text }}"></input>
+                                </div>
+                                
+                                <div class = "infoGroup">
+                                    <label for="Email" class="custom-label" style="vertical-align: middle;">Email:</label>
+                                    <input class="infoText" id = "Email" style="vertical-align: middle;" value = "{{ email_text }}"></input>
+                                </div>
+                                
+                                <div class = "infoGroup" id="websitesContainer">
                                     <div>
-                                        <label for="Experience{{ experienceIndex }}" id ="Experience{{ experienceIndex }}" class="custom-label" style="vertical-align: middle;">Experience {{ experienceIndex }}:</label>
-                                        <button id="editExperienceButton" onclick="toggleForm(experienceIndex)">...</button>
-                                        <button id="deleteExperienceButton">Delete</button>
+                                        <button id="addWebsiteButton" id="custom-button-edit">Add Website</button>
+                                    </div>
+    
+                                    {% for website in websites %}
+                                    <div class="infoGroup">
+                                        <label for="Website{{ loop.index }}" class="custom-label" id = "websiteInfo{{loop.index}}" style="vertical-align: middle;">Website {{ loop.index }}:</label>
+                                        <input class="infoText_websiteInput" id="Website{{ loop.index }}" data-index="{{ loop.index }}" style="vertical-align: middle;" value="{{ website }}"></input>
+                                        <button class="deleteWebsiteButton" id="custom-button-edit" data-index="{{ loop.index }}">Delete</button>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+    
+    
+                    
+                        <div class = "inside" id = "education">
+                            <a href="#" class="custom-button">Education</a>
+                            <div class = "contactGroup" >
+    
+                                <div>
+                                    <button id="addEducationButton" id="custom-button-edit" >Add Education</button>
+                                </div>
+                                <div id="educationsContainer">
+                                    
+                                    {% if educations %}
+                                {% for education in educations %}
+                                    {% set educationIndex = loop.index %}
+                                    <div class="infoGroup" id = "educationDiv" data-index="{{ educationIndex }}" >
+                                        
+                                        <label for="Education{{ educationIndex }}" id ="Education{{ educationIndex }}" class="custom-label" style="vertical-align: middle;">Education {{ educationIndex }}:</label>
+                                        <input class="infoText_educationName" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.name }}" placeholder="Institution"></input>
+                                        <input class="infoText_educationGPA" id="Education{{ educationIndex }}" data-index="{{ educationIndex }}" style="vertical-align: middle;" value="{{ education.gpa }}" placeholder="GPA"></input>
+                                        <button class="deleteEducationButton" id="custom-button-edit" data-index="{{ educationIndex }}">Delete</button>
+                                    </div>
+                                {% endfor %}
+    
+                                {% endif %}
+                            </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class = "info" id = "experience_skills">
+                        <div  id = "skills" style = "height: 20vh;">
+                            <a href="#" class="custom-button">Skills</a>
+                            <div class = "contactGroup">
+                                <textarea class="infoText" id = "skills">{{ skills_text }}</textarea>
+                            </div>
+                            
+                        </div>
+    
+    
+                    
+                        <div  id = "experience" style = "height: 60vh;">
+                            <a href="#" class="custom-button">Experience</a>
+                            <div>
+                                <button id="addExperienceButton">Add Experience</button>
+                            </div>
+    
+                            <div id="experiencesContainer">
+                                {% if experiences %}
+                                    {% for experience in experiences %}
+                                        {% set experienceIndex = loop.index %}
+                                        <div class="infoGroup" id = "experienceDiv" data-index="experience{{ experienceIndex }}" >
+                                            <div>
+                                                <label for="Experience{{ experienceIndex }}" id ="Experience{{ experienceIndex }}" class="custom-label" style="vertical-align: middle;">Experience {{ experienceIndex }}:</label>
+                                                <button id="editExperienceButton" onclick="toggleForm(experienceIndex)">...</button>
+                                                <button id="deleteExperienceButton">Delete</button>
+                                            </div>
+                                            
+                                            <div id =experienceForm toggle = "off" index = experience{{experienceIndex}}>
+                                                <button id="editExperienceButton" onclick="toggleForm(experienceIndex)">X</button>
+                                                <label for="title"><b>Title</b></label>
+                                                <input class="infoText_experienceTitle" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.title }}" placeholder="Title"></input>
+    
+                                                <label for="company"><b>Company</b></label>
+                                                <input class="infoText_experienceCompany" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.company }}" placeholder="Company"></input>
+    
+                                                <label for="startDate"><b>Start Date</b></label>
+                                                <input class="infoText_experienceStartDate" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.startDate }}"></input>
+    
+                                                <label for="endDate"><b>End Date</b></label>
+                                                <input class="infoText_experienceEndDate" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.endDate }}"></input>
+    
+    
+                                                <label for="info"><b>Info</b></label>
+                                                <textarea placeholder="Enter Info" class="infoText_experienceInfo" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.info }}"></textarea>
+                                            </div>
+                                        </div>
+                                {% endfor %}
+                            {% endif %}
+                            </div>
+                            
+                        
+                        </div>
+                    </div>
+                
+                
+                   
+
+                
+                    <div class = "info" id = "projects">
+                        <a href="#" class="custom-button">Projects</a>
+                        <div>
+                            <button id="addProjectButton" id="custom-button-edit">Add Project</button>
+                        </div>
+                        <div id="projectsContainer">
+                        
+                        {% if projects %}
+                            {% for project in projects %}
+                                {% set projectIndex = loop.index %}
+                                <div class="infoGroup" id = "projectDiv" data-index="{{ projectIndex }}" >
+                                    <label for="Project{{ projectIndex }}" id ="Project{{ projectIndex }}" class="custom-label" style="vertical-align: middle;">Project {{ projectIndex }}:</label>
+                                    <div class="horizontalInputs">
+                                        <input class="infoText_projectName" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.name }}" placeholder="Project Name"></input>
+                                        <input class="infoText_projectTech" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.tech }}" placeholder="Languages/Frameworks"></input>
+                                        <input type="date" class="infoText_projectDate" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.date }}" placeholder="Date" />
+                                        <textarea class="infoText_projectInfo" id = "Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" placeholder="Info">{{ project.info }}</textarea>
+                                        
+                                        <button class="deleteProjectButton" id="custom-button-edit" data-index="{{ projectIndex }}">Delete</button>
+                                    
                                     </div>
                                     
-                                    <div id =experienceForm toggle = "off" index = experience{{experienceIndex}}>
-                                        <button id="editExperienceButton" onclick="toggleForm(experienceIndex)">X</button>
-                                        <label for="title"><b>Title</b></label>
-                                        <input class="infoText_experienceTitle" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.title }}" placeholder="Title"></input>
-
-                                        <label for="company"><b>Company</b></label>
-                                        <input class="infoText_experienceCompany" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.company }}" placeholder="Company"></input>
-
-                                        <label for="startDate"><b>Start Date</b></label>
-                                        <input class="infoText_experienceStartDate" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.startDate }}"></input>
-
-                                        <label for="endDate"><b>End Date</b></label>
-                                        <input class="infoText_experienceEndDate" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.endDate }}"></input>
-
-
-                                        <label for="info"><b>Info</b></label>
-                                        <textarea placeholder="Enter Info" class="infoText_experienceInfo" id="Experience{{ experienceIndex }}" data-index="{{ experienceIndex }}" style="vertical-align: middle;" value="{{ experience.info }}"></textarea>
-                                    </div>
-                                </div>
-                        {% endfor %}
-                    {% endif %}
-                    </div>
-                    
-                
-                </div>
-
-
-
-
-                <a href="#" class="custom-button">Projects</a>
-                <div class = "info">
-                    
-                    <div>
-                        <button id="addProjectButton" id="custom-button-edit">Add Project</button>
-                    </div>
-                <div id="projectsContainer">
-                
-                {% if projects %}
-                    {% for project in projects %}
-                        {% set projectIndex = loop.index %}
-                        <div class="infoGroup" id = "projectDiv" data-index="{{ projectIndex }}" >
-                            <label for="Project{{ projectIndex }}" id ="Project{{ projectIndex }}" class="custom-label" style="vertical-align: middle;">Project {{ projectIndex }}:</label>
-                            <div class="horizontalInputs">
-                                <input class="infoText_projectName" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.name }}" placeholder="Project Name"></input>
-                                <input class="infoText_projectTech" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.tech }}" placeholder="Languages/Frameworks"></input>
-                                <input type="date" class="infoText_projectDate" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.date }}" placeholder="Date" />
-                                <textarea class="infoText_projectInfo" id = "Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" placeholder="Info">{{ project.info }}</textarea>
-                                
-                                <button class="deleteProjectButton" id="custom-button-edit" data-index="{{ projectIndex }}">Delete</button>
-                            
+                                    <input class="infoText_projectInfo" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.info }}" placeholder="Description"></input>
+                                    
                             </div>
-                            
-                            <input class="infoText_projectInfo" id="Project{{ projectIndex }}" data-index="{{ projectIndex }}" style="vertical-align: middle;" value="{{ project.info }}" placeholder="Description"></input>
-                            
-                        </div>
-                    {% endfor %}
-                    {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        
                     
+                    </div>
                 
-                </div>
-                
-            </div>
+            
             
         </div>
+
+        
         
             
         
