@@ -10,7 +10,7 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    max-height: 100vh;
+    height: 100vh;
 }
 
 /* Navbar Styles */
@@ -69,7 +69,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 2vh 2vw rgba(0, 0, 0, 0.2);
     padding: 1%;
-    max-height: 100vh;
+    height: 100vh;
     
 }
 
@@ -82,8 +82,9 @@ body {
 }
 #rightCol{
     justify-content: left;
+    flex-direction: column;
     margin-left: 1%;
-    overflow: auto;
+    
     
 }
 
@@ -93,8 +94,8 @@ body {
     flex-direction: column; /* Arrange buttons vertically */
     justify-content: space-between; /* Align buttons to the top */
     height: 100%;
-    overflow: auto;
-    min-height: 140vh;
+    
+    height: 100vh;
     width: 100%;
     margin: auto 0;
     
@@ -153,6 +154,7 @@ body {
     overflow: hidden;
     content: attr(data-text);
     transition: all 0.6s ease;
+    width: 100%;
 }
 
 #addWebsiteButton{
@@ -190,6 +192,114 @@ body {
   color: #3c0101c3;
 }
 
+#addEducationButton{
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    min-height: 20px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
+}
+
+#addEducationButton:hover,
+#addEducationButton:active {
+  background-color: white;
+  background-position: 0 0;
+  color: #3c0101c3;
+}
+
+
+#addProjectButton{
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    min-height: 20px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
+}
+
+#addProjectButton:hover,
+#addProjectButton:active {
+  background-color: white;
+  background-position: 0 0;
+  color: #3c0101c3;
+}
+
+#addExperienceButton{
+    background: #3c0101c3;
+    border: 1px #3c0101c3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    min-height: 20px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    content: attr(data-text);
+    transition: all 0.6s ease;
+}
+
+#addExperienceButton:hover,
+#addExperienceButton:active {
+  background-color: white;
+  background-position: 0 0;
+  color: #3c0101c3;
+}
+
+
+
 #custom-button-edit {
     background: #3c0101c3;
     border: 1px #3c0101c3;
@@ -217,6 +327,8 @@ body {
     content: attr(data-text);
     transition: all 0.6s ease;
 }
+
+
 
 #custom-button-edit:hover,
 #custom-button-edit:active {
@@ -302,34 +414,28 @@ body {
 .contactGroup{
     display: flex;
     flex-direction: column; /* Arrange buttons vertically */
-    justify-content: space-evenly; /* Align buttons to the top */
+    
     height: 100%;
     width: 100%;
-    overflow-y: auto;
+    
     
 }
 
 
-.info {
-    /* Add necessary styles to .info for proper sizing */
-    /* Ensure it has enough height to contain .contactGroup */
-    /* For example: */
-    height: 30vh; /* Adjust as needed */
-    overflow: auto; /* Add scrollbar if content exceeds height */
-    width: 100%;
-}
 
-#skills{
-    width: 90%;
-    height: 75%;
-}
+
+
+
 .infoGroup{
     display: inline-block;
-    
+    width: 100%;
+    margin: 1em;
 }
-#websitesContainer{
-    overflow: auto;
+
+.infoGroup > * {
+    margin-right: 10px; /* Add space between items horizontally */
 }
+
 
 .infoText_websiteInput{
     border-bottom-color: #3c0101;
@@ -372,3 +478,144 @@ body {
     border-color: #3c0101c3; /* Change color on focus */
     box-shadow: 0 0 5px #3c0101c3;
 }
+
+
+
+#experienceForm {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.2em solid #f1f1f1;
+    background-color: white; /* Set background color to white */
+    z-index: 9;
+    width: 35%;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+#experienceForm button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#experiencesContainer {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Align children vertically */
+}
+
+
+#experienceForm label {
+    margin-bottom: 0.5em; /* Add space below labels */
+}
+
+
+
+#experienceForm textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+
+#experienceForm input,
+#experienceForm textarea{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-bottom-color: #3c0101;
+    border-top-color: #ffffff00;
+    border-left-color:  #ffffff00;
+    border-right-color:  #ffffff00;
+    
+}
+
+
+#experienceForm textarea :focus{
+    outline: none;
+    border-color: #3c0101c3; /* Change color on focus */
+    box-shadow: 0 0 5px #3c0101c3;
+}
+
+#experienceForm input:focus{
+    outline: none;
+    border-color: #3c0101c3; /* Change color on focus */
+    box-shadow: 0 0 5px #3c0101c3;
+}
+
+
+.infoContainer {
+    max-width: 100%;
+  }
+  .buttons form,
+  .buttons .infoContainer {
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+  }
+
+.info {
+    /* Add necessary styles to .info for proper sizing */
+    /* Ensure it has enough height to contain .contactGroup */
+    /* For example: */
+    width: 100%;
+    display: none;
+    height: 80vh;
+   
+}
+
+.inside {
+    /* Add margin-bottom to create space between divs vertically */
+    height: 40vh; /* Adjust the value as needed */
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    width: auto;
+    color: #3c0101c3;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0.5 em;
+    user-select: none;
+}
+
+
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a shadow effect */
+.prev:hover,
+.next:hover {
+    box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.2); /* Adjust the values as needed */
+}
+
+
+
+  /* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+
+
+
+
+
+
+
