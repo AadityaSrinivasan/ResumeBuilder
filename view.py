@@ -31,7 +31,7 @@ def printData():
 
 
 @view.route("/",  methods = ['GET', "POST"])
-def home():
+def home(pdf_image = None):
     print("inside sayok's mother")
     pdf_image = None
     nl = '\n'
@@ -70,9 +70,6 @@ def home():
         pdf_image = latexPDF(analysis_results)
         printData()
         print("image created")
-
-
-
     else:
         name = ""
         number = ""
@@ -92,9 +89,10 @@ def update_data():
     analysis_results[field] = value
     printData()
     print("Update")
+    pdf_image = latexPDF(analysis_results)
     # Return a response if needed
     
-    return home()
+    return home(pdf_image)
 
 
 

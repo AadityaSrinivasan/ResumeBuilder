@@ -10,6 +10,7 @@ def convert_pdf_to_image(pdf_path):
         pdf_images = convert_from_bytes(pdf_content, dpi=200, first_page=1, last_page=1)
         if pdf_images:
             pdf_image = pdf_images[0]
+            print("gigaboo pdf image created")
             return pdf_image
     return None
 
