@@ -221,7 +221,6 @@ function sendDataToServer(fieldName, value) {
 
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
 
     //DELETING EDUCATIONS
@@ -230,7 +229,120 @@ document.addEventListener('DOMContentLoaded', function () {
     var deleteEDUButtons = document.querySelectorAll('.deleteEducationButton');
     var addEducationButton = document.getElementById('addEducationButton');
     var educationContainer = document.getElementById('educationsContainer');
+    // Get the elements related to experiences
+    var addExperienceButton = document.getElementById('addExperienceButton');
+    var experiencesContainer = document.getElementById('experiencesContainer');
+    var deleteExperienceButtons = document.querySelectorAll('.deleteExperienceButton');
     
+
+    // Get the elements related to experiences
+    var addExperienceButton = document.getElementById('addExperienceButton');
+    var experiencesContainer = document.getElementById('experiencesContainer');
+    var deleteExperienceButtons = document.querySelectorAll('.deleteExperienceButton');
+
+    // Function to add a new experience entry
+    addExperienceButton.addEventListener('click', function () {
+        // Calculate the index for the new experience entry
+        var newIndex = experiencesContainer.children.length + 1;
+
+        // Create a new infoGroup div for the new experience
+        var newExperienceDiv = document.createElement('div');
+        newExperienceDiv.className = 'infoGroup';
+
+        // Create label for the new experience
+        var newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'Experience' + newIndex);
+        newLabel.className = 'custom-label';
+        newLabel.id = 'Experience' + newIndex;
+        newLabel.textContent = 'Experience ' + newIndex + ':';
+
+        // Create input for the title of the new experience
+        var newTitleInput = document.createElement('input');
+        newTitleInput.className = 'infoText_experienceTitle';
+        newTitleInput.id = 'Experience' + newIndex;
+        newTitleInput.setAttribute('data-index', newIndex);
+        newTitleInput.style.verticalAlign = 'middle';
+        newTitleInput.placeholder = 'Title';
+
+        // Create input for the company of the new experience
+        var newCompanyInput = document.createElement('input');
+        newCompanyInput.className = 'infoText_experienceCompany';
+        newCompanyInput.id = 'Experience' + newIndex;
+        newCompanyInput.setAttribute('data-index', newIndex);
+        newCompanyInput.style.verticalAlign = 'middle';
+        newCompanyInput.placeholder = 'Company';
+
+        // Create textarea for the description of the new experience
+        var newDescriptionTextarea = document.createElement('textarea');
+        newDescriptionTextarea.className = 'infoText_experienceDescription';
+        newDescriptionTextarea.id = 'Experience' + newIndex;
+        newDescriptionTextarea.setAttribute('data-index', newIndex);
+        newDescriptionTextarea.style.verticalAlign = 'middle';
+        newDescriptionTextarea.placeholder = 'Description';
+
+        // Create delete button for the new experience
+        var newDeleteButton = document.createElement('button');
+        newDeleteButton.className = 'deleteExperienceButton';
+        newDeleteButton.id = 'custom-button-edit';
+        newDeleteButton.setAttribute('data-index', newIndex);
+        newDeleteButton.textContent = 'Delete';
+
+        // Append elements to the newExperienceDiv
+        newExperienceDiv.appendChild(newLabel);
+        newExperienceDiv.appendChild(newTitleInput);
+        newExperienceDiv.appendChild(newCompanyInput);
+        newExperienceDiv.appendChild(newDescriptionTextarea);
+        newExperienceDiv.appendChild(newDeleteButton);
+
+        // Add event listener to the delete button
+        newDeleteButton.addEventListener('click', function () {
+            // Get the index of the experience to be deleted
+            var index = newDeleteButton.getAttribute('data-index');
+            // Remove the experience div from the container
+            newExperienceDiv.remove();
+            // Update the indices of the remaining experiences
+            updateExperienceIndices();
+            // Update the server-side data
+            updateServerSideExperienceList(index);
+        });
+
+        // Append the newExperienceDiv to the experiencesContainer
+        experiencesContainer.appendChild(newExperienceDiv);
+    });
+
+    // Function to update the indices of the experiences after deletion
+    function updateExperienceIndices() {
+        var experienceDivs = document.querySelectorAll('.infoGroup');
+        experienceDivs.forEach(function (experienceDiv, index) {
+            experienceDiv.querySelectorAll('[data-index]').forEach(function (element) {
+                element.setAttribute('data-index', index + 1);
+            });
+        });
+    }
+
+    // Function to update the server-side data when deleting an experience
+    function updateServerSideExperienceList(index) {
+        // Send a POST request to update the server-side data
+        fetch('/update_experiences', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                index: index
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Experience deleted successfully');
+            } else {
+                console.error('Error deleting experience');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
     addEducationButton.addEventListener('click', function () {
         var newIndex = educationContainer.children.length;

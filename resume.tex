@@ -1,0 +1,231 @@
+%-------------------------
+% Resume in Latex
+% Author : Aadyitya Srinivasan
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeEducation}[4]{ % Define the command with four arguments
+    \resumeSubheading
+    {#1}{#2}
+    {#3}{#4}
+}
+
+
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Aaditya Srinivasan } \\ \vspace{1pt}
+    \small 281-414-7381 $|$ \href{mailto:aaditya.srini@tamu.edu}{\underline{aaditya.srini@tamu.edu}} $|$ 
+    \href{https://aadityasrinivasan.github.io/PortfolioWebsite/}{\underline{aadityasrinivasan.github.io/PortfolioWebsite}} 
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+
+\resumeSubheading{College Station}{3.931}{CPCS}{}
+\resumeSubheading{Texas A\&M University}{0.00}{CPCS}{}
+\resumeSubheading{Houston Community College}{0.00}{CPCS}{}
+
+
+\resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Information Technologies Intern}{June 2023 -- August 2023}
+      {}{College Station, TX}
+      \resumeItemListStart
+        \resumeItem{Developed AI Sentimental Analysis Tool for the entire company to use on all applications which would send Sentimental Data to Servers for use using Azure Cognitive Services}
+        \resumeItem{Automated back-end processes using Python and Powershell with Power Automate
+}
+        \resumeItem{Finished Backlog Tasks for the Business Intelligence Department which ranged from creating Power BI reports with DAX and SQL Queries to Developing efficient Queries for Data Warehouse}
+      \resumeItemListEnd
+      
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+    \resumeSubheading
+      {Information Technologies Technician}{Sep. 2018 -- Present}
+      {Aadamsoft}{Houston, TX}
+      \resumeItemListStart
+        \resumeItem{Worked with IT Professionals to develop Network and Hardware Solutions for Businesses}
+        \resumeItem{Created PC for the local hospital and solved Firewall issues for clients}
+        \resumeItem{Backed up data for multiple different clients on with newly created servers}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {The Unmanned 12th Man}{September 2023 -- current}
+      {Texas A\&M University}{College Station, TX}
+      \resumeItemListStart
+        \resumeItem{The Texas A\&M 12th Unmanned Team is competing in the AutoDrive Challenge II, a four-year contest sponsored by General Motors and SAE, focusing on autonomous vehicle development.}
+        \resumeItem{Working on a Chevy Bolt EUV provided by GM, and they are tasked with creating a level-4 autonomous vehicle by tackling computational, electrical, and mechanical challenges.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Face Identifier} $|$ \emph{OpenCV2, Python, Machine Learning, PyQt5, Git}}{2023}
+          \resumeItemListStart
+            \resumeItem{Engineered a Python program using OpenCV2 and machine learning for facial detection, integrated with a PyQt5 GUI}
+            \resumeItem{Designed to assist professional photographers, like "RajBose Photography" and "HGFilms", in organizing photos by grouping them based on detected faces}
+            \resumeItem{Developed collaboratively with a colleague using Git and Github for version control}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Satisfaction Detector} $|$ \emph{OpenCV2, deepface, Python, Power BI, DAX, Git, SQL}}{2023}
+          \resumeItemListStart
+            \resumeItem{Engineered a program utilizing OpenCV2 and deepface, leveraging a Convolutional Neural Network to accurately classify 7 distinct human emotions}
+            \resumeItem{Efficiently records and logs unique customer faces’ satisfaction via the device's camera, transferred from a database into PowerBI using DAX for intuitive data visualization}
+            \resumeItem{Implemented continuous delivery using TravisCI to build the plugin upon a new release}
+            \resumeItem{Collaborated with stakeholders to suggest features and gather feedback about the program}
+          \resumeItemListEnd
+        \resumeProjectHeading
+    {\textbf{Personal Website} $|$ \emph{HTML, JavaScript, CSS}}{Current}
+    \resumeItemListStart
+        \resumeItem{Crafted and developed a personal website showcasing professional accomplishments, skills, and information for potential employers done}
+    \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+
+        \item{\textbf{Languages}{: continuous delivery, Java, Power BI, Git, Python, Azure, JavaScript, Excel, data visualization, Machine Learning, React, SQL, machine learning }}
+        \item{\textbf{Frameworks}{: React, Web Dev Tools: HTML, CSS, JavaScript}}
+        \item{\textbf{Database}{: SQL, MySQL, PostgreSQL, Cloud Services: Azure}}
+        \item{\textbf{Tools}{: Git, BI: Power BI, DAX, IDEs: VS Code, PyCharm}}
+
+\end{itemize}
+\section{Awards}
+Certificate of Coding For Medicine, Certificate of Mastery of Excel (Houston Community College)
+
+
+
+
+
+%-------------------------------------------
+\end{document}

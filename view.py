@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,  jsonify, request
+from flask import Blueprint, render_template,  jsonify, request, url_for, redirect
 from io import BytesIO
 from readRes import*
 from pdf2image import convert_from_bytes
@@ -6,6 +6,7 @@ import base64
 import tempfile
 from readRes import Education, Project
 from webscraper import get_skills_from_website
+from latex import latexPDF
 
 view = Blueprint(__name__,"view")
 global analysis_results
@@ -37,7 +38,8 @@ def printData():
 
 
 @view.route("/",  methods = ['GET', "POST"])
-def home():
+def home(pdf_image = None):
+    print("inside sayok's mother")
     pdf_image = None
     nl = '\n'
     global analysis_results
@@ -57,16 +59,12 @@ def home():
                     temp_file.write(pdf_content)
                 temp_file_path = temp_file.name
 
-                pdf_images = convert_from_bytes(pdf_content, dpi=200, first_page=1, last_page=1)
-                if pdf_images:
-                    pdf_image = pdf_images[0]
-                
                 pdf_file.seek(0)  # Reset the file pointer
                 text = extract_text_from_pdf(BytesIO(pdf_content))
                 
                 analysis_results = analyzeRes(text, temp_file_path)
                 uploaded_pdf = pdf_file
-
+                print(analysis_results)
 
             elif uploaded_pdf != None:
                 print('gabagoo')
@@ -79,9 +77,11 @@ def home():
         educations = analysis_results.get('education')
         experiences = analysis_results.get('experience')
         skills =', '.join(analysis_results.get('skills'))
+        pdf_image = latexPDF(analysis_results)
+        printData()
+        print("image created")
         projects = analysis_results.get('projects')
     else:
-        
         name = ""
         number = ""
         email = ""
@@ -104,8 +104,13 @@ def update_data():
     # Update the analysis_results or perform necessary actions with field and value
     analysis_results[field] = value
     printData()
+    print("Update")
+    pdf_image = latexPDF(analysis_results)
     # Return a response if needed
-    return 'Data received successfully'
+    
+    return home(pdf_image)
+
+
 
 @view.route('/update_dataList', methods=['POST'])
 def update_dataList():
